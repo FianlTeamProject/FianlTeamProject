@@ -1,4 +1,4 @@
-package edu.spring.ex02.domain;
+package edu.spring.ex02.domain.taejun;
 
 // MVC 디자인 패턴에서 Model 클래스 : VO(Value Object)
 public class Member {

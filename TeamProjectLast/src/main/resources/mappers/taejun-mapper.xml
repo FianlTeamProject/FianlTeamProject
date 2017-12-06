@@ -4,69 +4,79 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     <!-- 이름을 굳이 길게 지을필요없음. 그냥 구분용으로 패키지처럼 지음 -->
-<mapper namespace="TJ.MAPPER">
+<mapper namespace="edu.spring.ex02.mappers.taejun">
+
+    <select id="selectAll_Reply" resultType="Reply">
+    SELECT * FROM jun_reply ORDER BY rno DESC
+    </select>
+    
+    <delete id="delete_Reply">
+    	DELETE FROM jun_reply WHERE rno = #{rno}
+    </delete>
+    
+    
     <select id="selectAll" resultType="Board"> 
-    	SELECT * FROM ${tblBoard} ORDER BY ${colBno} DESC
+    	SELECT * FROM ${junBoard} ORDER BY ${junBno} DESC
     </select>
     
     <insert id="insert">
-    	INSERT INTO ${tblBoard} (${colTitle}, ${colContent}, ${colUserid}, ${colRegdate}, ${colBfile}) 
+    	INSERT INTO ${junBoard} (${junTitle}, ${junContent}, ${junUserid}, ${junRegdate}, ${junBfile}) 
     	VALUES(#{title}, #{content}, #{userid}, sysdate, #{bfile})
     </insert>
     
     <update id="update">
-    	UPDATE ${tblBoard} SET ${colTitle} = #{title} , 
-    	${colContent} = #{content} WHERE ${colBno} = #{bno}
+    	UPDATE ${junBoard} SET ${junTitle} = #{title} , 
+    	${junContent} = #{content} WHERE ${junBno} = #{bno}
     </update>
     
     <delete id="delete">
-    	DELETE FROM ${tblBoard} WHERE ${colBno} = #{bno}
+    	DELETE FROM ${junBoard} WHERE ${junBno} = #{bno}
     </delete>
     
     <select id="selectByBno" resultType="Board">
-    	SELECT * FROM ${tblBoard} WHERE ${colBno} = #{bno}
+    	SELECT * FROM ${junBoard} WHERE ${junBno} = #{bno}
     </select>
     
     <select id="selectByUserid" resultType="Board">
-    	SELECT * FROM ${tblBoard} WHERE ${colUserid} LIKE #{userid} ORDER BY ${colBno} DESC
+    	SELECT * FROM ${junBoard} WHERE ${junUserid} LIKE #{userid} ORDER BY ${junBno} DESC
     </select>
     
     <select id="selectByTitle" resultType="Board">
-    	SELECT * FROM ${tblBoard} WHERE ${colTitle} LIKE #{title} ORDER BY ${colBno} DESC
+    	SELECT * FROM ${junBoard} WHERE ${junTitle} LIKE #{title} ORDER BY ${junBno} DESC
     </select>
     
     <select id="selectByTitleAndContent" resultType="Board">
-    	SELECT * FROM ${tblBoard} WHERE ${colTitle} LIKE #{title} OR ${colContent} LIKE #{content} ORDER BY ${colBno} DESC
+    	SELECT * FROM ${junBoard} WHERE ${junTitle} LIKE #{title} OR ${junContent} LIKE #{content} ORDER BY ${junBno} DESC
     </select>
     
     
     <!-- Dynamic SQL -->
     <!-- MyBatis가 가지고 있는 특징 : 조건에 따라서 SQL 문장을 동적으로 만들어주는 기능 -->
     <select id="search" resultType="Board">
-    	SELECT * FROM ${tblBoard}
+    	SELECT * FROM ${junBoard}
     	WHERE
-    	<if test="searchType==1"> ${colUserid} LIKE #{searchWord} </if>
-    	<if test="searchType==2"> ${colTitle} LIKE #{searchWord} </if>
-    	<if test="searchType==3"> ${colTitle} LIKE #{searchWord} OR ${colContent} LIKE #{searchWord} </if>
-    	ORDER BY ${colBno} DESC
+    	<if test="searchType==1"> ${junUserid} LIKE #{searchWord} </if>
+    	<if test="searchType==2"> ${junTitle} LIKE #{searchWord} </if>
+    	<if test="searchType==3"> ${junTitle} LIKE #{searchWord} OR ${junContent} LIKE #{searchWord} </if>
+    	ORDER BY ${junBno} DESC
     </select>
     
     <select id="search2" resultType="Board">
-    	SELECT * FROM ${tblBoard}
+    	SELECT * FROM ${junBoard}
     	WHERE
     	<choose>
-    		<when test="searchType==1"> ${colUserid} LIKE #{searchWord} </when>
-    		<when test="searchType==2"> ${colTitle} LIKE #{searchWord} </when>
-    		<when test="searchType==3"> ${colTitle} LIKE #{searchWord} OR ${colContent} LIKE #{searchWord} </when>
+    		<when test="searchType==1"> ${junUserid} LIKE #{searchWord} </when>
+    		<when test="searchType==2"> ${junTitle} LIKE #{searchWord} </when>
+    		<when test="searchType==3"> ${junTitle} LIKE #{searchWord} OR ${junContent} LIKE #{searchWord} </when>
     	</choose>
-    	ORDER BY ${colBno} DESC
+    	ORDER BY ${junBno} DESC
     </select>
     
     
     <!-- 페이지 처리를 위한 SQL 문장들 -->
     <!-- Board 테이블의 전체 데이터 갯수 -->
     <select id="totalCount" resultType="Integer">
-    	select count (${colBno}) cnt from ${tblBoard}
+    	select count (${junBno}) cnt from ${junBoard}
     </select>
     
     <!-- 한 페이지에 보여줄 게시글만 검색 -->
@@ -75,7 +85,7 @@
 	    from (
 	        select rownum rn, a.*
 	        from (
-	            select * from ${tblBoard} order by ${colBno} desc
+	            select * from ${junBoard} order by ${junBno} desc
 	        ) a
 	    ) b
 	    where rn between #{start} and #{end}
@@ -86,13 +96,13 @@
     	select b.bno, b.title, b.content, b.userid, b.regdate
 		from ( 
 		select rownum rn , a.*from ( 
-		SELECT * FROM ${tblBoard} WHERE ${colUserid} LIKE #{searchWord} ORDER BY ${colBno} DESC ) a ) b
+		SELECT * FROM ${junBoard} WHERE ${junUserid} LIKE #{searchWord} ORDER BY ${junBno} DESC ) a ) b
 		where rn between #{start} and #{end}
     </select>
     
     <!-- 씨빠라라 -->
     <select id="searchCount" resultType="Integer">
-    	select count (${colBno}) tle from ${tblBoard} where ${colUserid} like #{searchWord}
+    	select count (${junBno}) tle from ${junBoard} where ${junUserid} like #{searchWord}
     </select>
     
     <!-- 2222222222 -->
@@ -100,13 +110,13 @@
     	select b.bno, b.title, b.content, b.userid, b.regdate
 		from ( 
 		select rownum rn , a.*from ( 
-		SELECT * FROM ${tblBoard} WHERE ${colTitle} LIKE #{searchWord} ORDER BY ${colBno} DESC ) a ) b
+		SELECT * FROM ${junBoard} WHERE ${junTitle} LIKE #{searchWord} ORDER BY ${junBno} DESC ) a ) b
 		where rn between #{start} and #{end}
     </select>
     
     <!-- 2222222222 -->
     <select id="searchCount2" resultType="Integer">
-    	select count (${colBno}) tle from ${tblBoard} where ${colTitle} like #{searchWord}   
+    	select count (${junBno}) tle from ${junBoard} where ${junTitle} like #{searchWord}   
     </select>
     
     <!-- 3333333333 -->
@@ -114,17 +124,17 @@
     	select b.bno, b.title, b.content, b.userid, b.regdate
 		from ( 
 		select rownum rn , a.*from ( 
-		SELECT * FROM ${tblBoard} 
+		SELECT * FROM ${junBoard} 
 		
-		WHERE ${colTitle} LIKE #{searchWord} or ${colContent} LIKE #{searchWord} 
+		WHERE ${junTitle} LIKE #{searchWord} or ${junContent} LIKE #{searchWord} 
 		
-		ORDER BY ${colBno} DESC ) a ) b
+		ORDER BY ${junBno} DESC ) a ) b
 		where rn between #{start} and #{end}
     </select>
     
     <!-- 33333333333 -->
     <select id="searchCount3" resultType="Integer">
-    	select count (${colBno}) tle from ${tblBoard} where ${colTitle} like #{searchWord} or ${colContent} like #{searchWoard}  
+    	select count (${junBno}) tle from ${junBoard} where ${junTitle} like #{searchWord} or ${junContent} like #{searchWoard}  
     </select>
     
     

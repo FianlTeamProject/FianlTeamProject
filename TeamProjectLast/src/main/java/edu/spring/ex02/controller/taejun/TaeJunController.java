@@ -1,4 +1,4 @@
-package edu.spring.ex02.controller;
+package edu.spring.ex02.controller.taejun;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package edu.spring.ex02.domain;
+package edu.spring.ex02.domain.taejun;
 
 import java.util.Date;
 

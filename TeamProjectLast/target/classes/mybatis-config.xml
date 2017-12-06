@@ -13,7 +13,10 @@
 		<property name="junRegdate" value="regdate"/>
 		<property name="junReplycnt" value="replycnt"/>
 		<property name="junBfile" value="bfile"/>
-		
+		<property name="junMember" value="JUN_MEMBER"/>
+		<property name="junId" value="mid"/>
+		<property name="junPwd" value="passwd"/>
+		<property name="junEmail" value="email"/>
 		<!-- 블라블라 -->
 		
 	</properties>

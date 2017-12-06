@@ -37,6 +37,6 @@
 	</context:component-scan>
 	
 	<!-- MyBatis가 사용하는 Mapper 객체를 자바 빈으로 설정 -->
-    <mybatis-spring:scan base-package="edu.spring.ex02.mappers"/>
+    <mybatis-spring:scan base-package="edu.spring.ex02.mappers.taejun"/>
 	
 </beans>

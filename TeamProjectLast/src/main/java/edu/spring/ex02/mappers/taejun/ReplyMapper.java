@@ -1,4 +1,4 @@
-package edu.spring.ex02.mappers;
+package edu.spring.ex02.mappers.taejun;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import edu.spring.ex02.domain.Board;
-import edu.spring.ex02.domain.Reply;
+import edu.spring.ex02.domain.taejun.Board;
+import edu.spring.ex02.domain.taejun.Reply;
 
 public interface ReplyMapper {
 	final String table = "JUN_REPLY";
