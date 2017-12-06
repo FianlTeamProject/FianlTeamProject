@@ -14,5 +14,5 @@ public class TaeJunController {
 	public String qaBoardList () {
 		
 		return "TaeJun/main";
-	}//end qaBoardList
+	}//end qaBoardList 않이 왜 않대냣굿욧 십밥바야
 }
