@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     <!-- 이름을 굳이 길게 지을필요없음. 그냥 구분용으로 패키지처럼 지음 -->
-<mapper namespace="edu.spring.ex02.BoardMapper">
+<mapper namespace="TJ.MAPPER">
     <select id="selectAll" resultType="Board"> 
     	SELECT * FROM ${tblBoard} ORDER BY ${colBno} DESC
     </select>

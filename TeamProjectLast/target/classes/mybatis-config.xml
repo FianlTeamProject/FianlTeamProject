@@ -4,21 +4,17 @@
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<properties>
-		<!-- Board -->
-		<property name="tblBoard" value="JUN_BOARD"/>
-		<property name="colBno" value="bno"/>
-		<property name="colTitle" value="title"/>
-		<property name="colContent" value="content"/>
-		<property name="colUserid" value="userid"/>
-		<property name="colRegdate" value="regdate"/>
-		<property name="colReplycnt" value="replycnt"/>
-		<property name="colBfile" value="bfile"/>
+		<!-- QA Board (TaeJun) -->
+		<property name="junBoard" value="JUN_BOARD"/>
+		<property name="junBno" value="bno"/>
+		<property name="junTitle" value="title"/>
+		<property name="junContent" value="content"/>
+		<property name="junUserid" value="userid"/>
+		<property name="junRegdate" value="regdate"/>
+		<property name="junReplycnt" value="replycnt"/>
+		<property name="junBfile" value="bfile"/>
 		
-		<!-- Member -->
-		<property name="tblMember" value="JUN_MEMBER"/>
-		<property name="colId" value="mid"/>
-		<property name="colPwd" value="passwd"/>
-		<property name="colEmail" value="email"/>
+		<!-- 블라블라 -->
 		
 	</properties>
 	
