@@ -29,7 +29,7 @@ public class ReplyController {
 	
 	@Autowired
 	private BoardService boardService;
-	
+	// dasaddddfdfdfd
 	@RequestMapping(value = "/reply",
 			method = RequestMethod.GET)
 	public void reply( /*int bno,*/ Model model) {
