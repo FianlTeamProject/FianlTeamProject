@@ -94,7 +94,7 @@ public class BoardController {
 			m = (Member) session.getAttribute("loginResult");			
 			if (m!=null) {
 				model.addAttribute("member",m);
-				html = "board/write";
+				html = "TaeJun/board/write";
 			} else {
 				html="redirect:/TaeJun/member/login"+"?fail=fail";
 			}
