@@ -36,13 +36,13 @@
 		
 			<div class="navbar-header">
 			
-			<a class="navbar-brand" href="/ex02/board/list">홈페이지</a></div>
+			<a class="navbar-brand" href="/ex02/TaeJun/board/list">홈페이지</a></div>
 			<ul class="nav navbar-nav">
 				<li><a href="/ex02/board/write">새 글 작성</a></li>
 			</ul>
 			
 			<ul class="nav navbar-nav navbar-right">
-				<form class="navbar-form navbar-left" action="/ex02/board/search" method="get">
+				<form class="navbar-form navbar-left" action="/ex02/TaeJun/board/search" method="get">
 				<select class="selectpicker" name="searchType">
 					<option value="1">작성자</option>
 					<option value="2">제목</option>
@@ -60,11 +60,11 @@
 				try{
 					Member loginResult = (Member) session.getAttribute("loginResult");
 					if(loginResult!=null) {
-						out.print("<li><a href=\"/ex02/member/info\"><span class=\"glyphicon glyphicon-user\"></span>"+loginResult.getMid()+"</li>");
-						out.print("<li><a href=\"/ex02/member/logout\"></span> 로그아웃</a></li>");
+						out.print("<li><a href=\"/ex02/TaeJun/member/info\"><span class=\"glyphicon glyphicon-user\"></span>"+loginResult.getMid()+"</li>");
+						out.print("<li><a href=\"/ex02/TaeJun/member/logout\"></span> 로그아웃</a></li>");
 					}else {
-						out.print("<li><a href=\"/ex02/member/register\"><span class=\"glyphicon glyphicon-user\"></span> 회원가입</a></li>");
-						out.print("<li><a href=\"/ex02/member/login\"><span class=\"glyphicon glyphicon-log-in\"></span> 로그인</a></li>");
+						out.print("<li><a href=\"/ex02/TaeJun/member/register\"><span class=\"glyphicon glyphicon-user\"></span> 회원가입</a></li>");
+						out.print("<li><a href=\"/ex02/TaeJun/member/login\"><span class=\"glyphicon glyphicon-log-in\"></span> 로그인</a></li>");
 					}
 				} catch (NullPointerException e) {
 					out.print("<li><a href=\"/ex02/member/register\"><span class=\"glyphicon glyphicon-user\"></span> 회원가입</a></li>");
