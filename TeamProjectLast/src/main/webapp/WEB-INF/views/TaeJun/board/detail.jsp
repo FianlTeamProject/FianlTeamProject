@@ -80,7 +80,7 @@
 	</nav>
 
 	<div class="jumbotron">
-		<h1 align="center">::Board Detail Page::</h1>
+		<h1 align="center">::질문/답변 게시판::</h1>
 	</div>
 	
 	<p>No.${board.bno }</p>

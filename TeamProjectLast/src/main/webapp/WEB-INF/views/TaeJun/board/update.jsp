@@ -74,7 +74,7 @@
 	</nav>
 
 	<div class="jumbotron">
-		<h1 align="center">::Board Update Page::</h1>
+		<h1 align="center">::질문/답변 게시판 [글 수정]::</h1>
 	</div>
 	
 	<p align="left">No.${board.bno}</p>

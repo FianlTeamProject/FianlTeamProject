@@ -73,7 +73,7 @@
 	</nav>
 
 	<div class="jumbotron">
-		<h1 align="center">::Board List Page::</h1>
+		<h1 align="center">::질문/답변 게시판::</h1>
 	</div>
   
 	<table class="table table-striped table-hover">

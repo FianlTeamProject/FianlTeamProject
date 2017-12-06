@@ -72,7 +72,7 @@
 	</nav>
 
 	<div class="jumbotron">
-		<h1 align="center">::Board Write Page::</h1>
+		<h1 align="center">::질문/답변 게시판 [글 쓰기]::</h1>
 	</div>
 	
 	<div class="panel panel-default">
