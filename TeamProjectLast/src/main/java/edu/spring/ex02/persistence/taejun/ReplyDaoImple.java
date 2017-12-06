@@ -14,14 +14,14 @@ import edu.spring.ex02.mappers.taejun.ReplyMapper;
 public class ReplyDaoImple implements ReplyDao {
 
 	private static final String NAMESPACE =
-			"edu.spring.ex02.mappers.ReplyMapper";
+			"taejunMappers";
 	
 	@Autowired private SqlSession session;
 	@Autowired private ReplyMapper mapper;
 	
 	@Override
 	public List<Reply> read() {
-		return session.selectList(NAMESPACE + ".selectAll");
+		return session.selectList(NAMESPACE + ".selectAll_Reply");
 	}
 	
 	@Override

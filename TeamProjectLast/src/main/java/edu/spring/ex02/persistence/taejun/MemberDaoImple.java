@@ -11,49 +11,49 @@ import edu.spring.ex02.domain.taejun.Member;
 @Repository
 public class MemberDaoImple implements MemberDao {
 	
-	static final String NAMESPACE = "edu.spring.ex02.MemberMapper";
+	static final String NAMESPACE = "taejunMappers";
 	
 	@Autowired
 	private SqlSession session;
 	
 	@Override
 	public int insert(Member m) {
-		return session.insert(NAMESPACE+".insert",m);
+		return session.insert(NAMESPACE+".insert_Member",m);
 	}
 
 	@Override
 	public Member login(Member m) {
-		return session.selectOne(NAMESPACE+".login", m);
+		return session.selectOne(NAMESPACE+".login_Member", m);
 	}
 
 	@Override
 	public List<String> search(String email) {
-		return session.selectList(NAMESPACE+".searchId", email);
+		return session.selectList(NAMESPACE+".searchId_Member", email);
 	}
 
 	@Override
 	public String search(Member m) {
-		return session.selectOne(NAMESPACE+".searchPw",m);
+		return session.selectOne(NAMESPACE+".searchPw_Member",m);
 	}
 
 	@Override
 	public int update(Member m) {
-		return session.update(NAMESPACE+".update", m);
+		return session.update(NAMESPACE+".update_Member", m);
 	}
 
 	@Override
 	public int delete(Member m) {
-		return session.delete(NAMESPACE+".delete", m);
+		return session.delete(NAMESPACE+".delete_Member", m);
 	}
 
 	@Override
 	public List<Member> select() {
-		return session.selectList(NAMESPACE+".selectAll");
+		return session.selectList(NAMESPACE+".selectAll_Member");
 	}
 
 	@Override
 	public Member check(String mid) {
-		return session.selectOne(NAMESPACE+".idCheck",mid);
+		return session.selectOne(NAMESPACE+".idCheck_Member",mid);
 	}
 
 }
