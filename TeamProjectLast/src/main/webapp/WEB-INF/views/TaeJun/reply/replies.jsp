@@ -33,7 +33,7 @@
 $("#divs div").click(function() {
 	var rno = $(this).attr("id");
 	$.ajax({
-		url: '/ex02/replies/update?rno='+rno,
+		url: '/ex02/TaeJun/replies/update?rno='+rno,
 		success: function(res, status, xhr) {
 			$('#rereplies'+rno).html(res);
 		}

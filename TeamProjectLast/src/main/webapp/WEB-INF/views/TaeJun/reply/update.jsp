@@ -35,7 +35,7 @@ String replierId= (String) session.getAttribute("replierid");
 <%
 	if (userId.equals(replierId)){	
 %>
-	<form action="/ex02/replies/update-result" method="get">
+	<form action="/ex02/TaeJun/replies/update-result" method="get">
 		<input type="hidden" id="rno" name="rno" value="${update.rno}">
 		<input type="hidden" id="bno" name="bno" value="${update.bno}">
 		<%out.print("<input type=\"hidden\" name=\"userid\" value= \""+userId+"\">");%>
