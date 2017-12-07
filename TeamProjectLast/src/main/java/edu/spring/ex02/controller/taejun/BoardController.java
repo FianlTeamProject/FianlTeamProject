@@ -32,7 +32,7 @@ import edu.spring.ex02.service.taejun.BoardService;
 @RequestMapping(value="/TaeJun/board") // 상위 폴더의 주소값 (현재설정기준 : /ex02/WEB-INF/views'/board') 에 해당
 public class BoardController {
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
-	private static final String UPLOAD_PATH = "C:\\Study\\FileUpload";
+	private static final String UPLOAD_PATH = "C:\\Users\\Administrator\\git\\teamProject\\TeamProjectLast\\src\\main\\webapp\\resources\\uploadFile";
 	
 	@Autowired
 	private BoardService service;

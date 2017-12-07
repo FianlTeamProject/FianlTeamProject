@@ -84,7 +84,7 @@
 	</div>
 	
 	<p>No.${board.bno }</p>
-	
+	<img src="/ex02/resources/uploadFile/${board.bfile }" />
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<div class="form-group" align="center">
@@ -108,7 +108,7 @@
 		    
 		    <div class="panel-body">
 	    		<div class="form-group" align="right">
-		    	<a href="">${board.bfile}</a>
+		    	<a href="/ex02/resources/uploadFile/${board.bfile }" target="_blank">${board.bfile}</a>
 		    </div>
 		</div>
 	</div>
