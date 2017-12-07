@@ -43,7 +43,7 @@ public class BoardController {
 		// 파일 이름 변경		
 		String sysdate = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 		UUID uuid = UUID.randomUUID();
-		String saveName =sysdate + "_" + uuid + "_" + file.getOriginalFilename();
+		String saveName =sysdate + "_" + file.getOriginalFilename();
 //		logger.info("saveName: {}", saveName);
 		
 		// 저장할 File 객체를 생성

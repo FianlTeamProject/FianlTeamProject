@@ -84,7 +84,6 @@
 	</div>
 	
 	<p>No.${board.bno }</p>
-	<img src="/ex02/resources/uploadFile/${board.bfile }" />
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<div class="form-group" align="center">
@@ -105,6 +104,8 @@
 		    	<label for="userid">작성자 :</label>
 		    	<input type="text" class="form-control" id="userid" name="userid" value="${board.userid }" required readonly/>
 		    </div>
+		    
+		    <img src="/ex02/resources/uploadFile/${board.bfile }" />
 		    
 		    <div class="panel-body">
 	    		<div class="form-group" align="right">
