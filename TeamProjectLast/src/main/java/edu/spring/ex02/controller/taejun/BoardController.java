@@ -36,7 +36,7 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService service;
-	
+	// 3:41
 	public String fail = "fail";
 	
 	private String saveFile(MultipartFile file) {
