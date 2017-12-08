@@ -24,7 +24,44 @@
 		-moz-appearance: none; 
 		appearance: none; 
 	}
+	
+	.img_wrap {
+		width: 300px;
+		margin-top: 50px;
+	}
+	.img_wrap img {
+		max-width: 100%;
+	}
 </style>
+
+<script type="text/javascript">
+        var sel_file;
+ 
+        $(document).ready(function() {
+            $("#input_img").on("change", handleImgFileSelect);
+        }); 
+ 
+        function handleImgFileSelect(e) {
+            var files = e.target.files;
+            var filesArr = Array.prototype.slice.call(files);
+ 
+            filesArr.forEach(function(f) {
+                if(!f.type.match("image.*")) {
+                    alert("미리보기는 이미지만 지원합니다.");
+                    return;
+                }
+ 
+                sel_file = f;
+ 
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $("#img").attr("src", e.target.result);
+                }
+                reader.readAsDataURL(f);
+            });
+        }
+ 
+</script>
 <title>::WRITE::</title>
 </head>
 <body>
@@ -100,9 +137,15 @@
 	    		
 	    		<div class="panel-body">
 	    			   <div class="form-group">
-				    <input type="file" name="uploadFiles" 
+				    <input type="file" name="uploadFiles" id="input_img"
 				        placeholder="파일 선택" /> <!-- multiple 속성을 넣으면 다중 업로드 가능-->
 				       </div>
+	    		</div>
+	    		
+	    		<div class="panel-body">
+	    			<div class="img_warp">
+	    				<img id="img">	    			
+	    			</div>
 	    		</div>
 	    		
 	    		<div align="center">

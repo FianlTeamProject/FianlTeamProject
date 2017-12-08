@@ -24,6 +24,8 @@
 		-moz-appearance: none; 
 		appearance: none; 
 	}
+	.ex_show{float:left;margin-right:20px;cursor:pointer}
+	.ex_hide{float:left;cursor:pointer}
 </style>
 <title>::DETAIL::</title>
 </head>
@@ -95,7 +97,12 @@
 	    	<div class="panel-body">
 				<div class="form-group">
 					<label for="content">글 내용:</label>
-					<textarea class="form-control" rows="14" id="content" name="content" required readonly>${board.content}</textarea>
+					<div class="well well-lg">
+						<img src="/ex02/resources/uploadFile/${board.bfile }" class="img-thumbnail" />
+						<br>
+						${board.content}
+						
+					</div>
 				</div>
 	    	</div>
 	    		
@@ -105,18 +112,47 @@
 		    	<input type="text" class="form-control" id="userid" name="userid" value="${board.userid }" required readonly/>
 		    </div>
 		    
-		    <img src="/ex02/resources/uploadFile/${board.bfile }" />
-		    
 		    <div class="panel-body">
 	    		<div class="form-group" align="right">
 		    	<a href="/ex02/resources/uploadFile/${board.bfile }" target="_blank">${board.bfile}</a>
+		    	</div>
 		    </div>
+		    
+		    <div class="panel-body">
+		    <div class="form-group" align="right">
+		    <form action="">
+		    	<input class="btn btn-default" type="submit" value="답변하기"/>
+		    </form>
+		    </div>
+		    </div>
+		    
 		</div>
 	</div>
 	
 	<p align="right">${board.regdate}</p>
 	
-	<div>
+<script type="text/javascript">
+$(function(){
+  var ex_show = $('.ex_show');
+  var ex_hide = $('.ex_hide');
+  var ex_box = $('.ex_box');
+  ex_show.click(function(){
+    ex_box.fadeIn();
+    ex_show.fadeOut();
+    ex_hide.fadeIn();
+  });
+  ex_hide.click(function(){
+    ex_box.fadeOut();
+    ex_show.fadeIn();
+    ex_hide.fadeOut();
+  });
+});
+</script>
+<b class="ex_show">댓글보이기</b>
+<br>
+<b class="ex_hide">댓글감추기</b>
+	<hr>
+	<div class="ex_box">
 	<form action="/ex02/TaeJun/replies/insert" method="get">
 		<input type="hidden" id="bno" name="bno" value="${board.bno}">
 		<%out.print("<input type=\"hidden\" name=\"userid\" value= \""+userId+"\">");%>
@@ -126,17 +162,31 @@
 			<button class="btn btn-default" type="submit">댓글작성</button>
 		</div>
 		</div>
-	</form>
+	</form>	
+		<div id="replies">
+		
+			<h4>댓글이 들어가는 공간입니다.</h4>
+		
+		</div>
 	</div>
-	<hr>
-	<div id="replies"><h4>댓글이 들어가는 공간입니다.</h4></div>
-	
 </div>
 
 <input type="hidden" id="failput" name="failput" value="${fail}"/>
 
 <script>
 $(document).ready(function() {
+	var ex_show = $('.ex_show');
+	var ex_hide = $('.ex_hide');
+	var ex_box = $('.ex_box');
+	
+	function start() {
+		ex_box.fadeOut();
+	    ex_show.fadeIn();
+	    ex_hide.fadeOut();
+	}
+    
+	start();
+	
 	// 검색할 댓글의 게시글 번호
 	var bno = $('#bno').val();
 	var list;

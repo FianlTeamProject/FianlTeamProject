@@ -26,7 +26,7 @@ public interface ReplyMapper {
 	String SQL_SELECT_BY_BNO = 
 			"SELECT * FROM "+ table
 			+ " WHERE bno = #{bno}"
-			+ " ORDER BY rno DESC";
+			+ " ORDER BY rno";
 	
 	String SQL_SELECT_BY_RERE = "select * from "+table
 			+ " where rno = #{rno}";
