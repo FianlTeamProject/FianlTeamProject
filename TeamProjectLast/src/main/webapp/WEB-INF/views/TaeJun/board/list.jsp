@@ -23,8 +23,13 @@
 		border-radius: 10px; /* iOS 둥근모서리 제거 */ 
 		-webkit-appearance: none; /* 네이티브 외형 감추기 */ 
 		-moz-appearance: none; 
-		appearance: none; 
+		appearance: none;
 	}
+	
+	select:hover {
+		cursor: pointer;
+	}
+	
 </style>
 <title>::LIST::</title>
 </head>

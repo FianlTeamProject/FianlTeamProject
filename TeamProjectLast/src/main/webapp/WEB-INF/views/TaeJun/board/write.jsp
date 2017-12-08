@@ -124,7 +124,9 @@
 	    		<div class="panel-body">
 					<div class="form-group">
 						<label for="content">글 내용:</label>
-						<textarea class="form-control" rows="14" id="content" name="content" required></textarea>
+						<textarea class="form-control" rows="14" id="content" name="content" required>
+
+						</textarea>
 					</div>
 	    		</div>
 	    		
