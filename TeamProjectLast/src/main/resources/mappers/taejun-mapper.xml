@@ -183,4 +183,12 @@
     </select>
     
     
+    
+    
+    <!-- 파일 관련 -->
+    <select id="selectFiles" resultType="Files">
+    	select * from ${junFiles} WHERE ${junBno} = #{bno} order by ${junBfile}
+    </select>
+    
+    
 </mapper>

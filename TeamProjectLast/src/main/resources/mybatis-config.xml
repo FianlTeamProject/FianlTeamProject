@@ -17,6 +17,7 @@
 		<property name="junId" value="mid"/>
 		<property name="junPwd" value="passwd"/>
 		<property name="junEmail" value="email"/>
+		<property name="junFiles" value="JUN_BFILE"/>
 		<!-- 블라블라 -->
 		
 	</properties>

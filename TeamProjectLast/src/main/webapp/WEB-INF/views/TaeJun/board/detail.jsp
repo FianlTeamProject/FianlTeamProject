@@ -90,7 +90,7 @@
 		<div class="panel-body">
 			<div class="form-group" align="center">
 				<label for="title">글 제목:</label>
-				<input type="text" class="form-control" id="title" name="title" value="${board.title }" required readonly/>
+				<input type="text" class="form-control" id="title" name="title" value="${board.title}" required readonly/>
 			</div>
 	    </div>
 	    		
@@ -98,10 +98,10 @@
 				<div class="form-group">
 					<label for="content">글 내용:</label>
 					<div class="well well-lg">
-						<img src="/ex02/resources/uploadFile/${board.bfile }" class="img-thumbnail" />
 						<br>
+						<img src="/ex02/resources/uploadFile/${board.bfile }" class="img-thumbnail" />
+						<br><br>
 						${board.content}
-						
 					</div>
 				</div>
 	    	</div>
@@ -120,8 +120,10 @@
 		    
 		    <div class="panel-body">
 		    <div class="form-group" align="right">
-		    <form action="">
+		    <form action="answer" method="get">
 		    	<input class="btn btn-default" type="submit" value="답변하기"/>
+		    	<input type="hidden" id="bno" name="bno" value="${board.bno }">
+		    	<input type="hidden" id="content" name="content" value="${board.content }">
 		    </form>
 		    </div>
 		    </div>

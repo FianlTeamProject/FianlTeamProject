@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import edu.spring.ex02.domain.taejun.Answer;
 import edu.spring.ex02.domain.taejun.Board;
 import edu.spring.ex02.domain.taejun.Member;
 import edu.spring.ex02.pageutil.taejun.PageNumberMaker;
@@ -122,6 +123,9 @@ public class BoardController {
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
 	public void BoardDetail(int bno, Model model,String fail) {
 		Board b = service.select(bno);
+		String c = b.getContent();
+		c = c.replace("\r\n","<br>");
+		b.setContent(c);
 		model.addAttribute("board",b);
 		model.addAttribute("fail",fail);
 	}//end BoardDetail.GET
@@ -256,5 +260,36 @@ public class BoardController {
 			model.addAttribute("searchType",searchType);
 		}
 	}//end BoardSearch
+	
+	
+	
+	@RequestMapping(value="/answer", method=RequestMethod.GET)
+	public String answerPage(Board b, Model model, HttpSession session) {
+		String html = "TaeJun/board/answer";
+		Member m;
+		try {
+			m = (Member) session.getAttribute("loginResult");			
+			if (m!=null) {
+				String c = b.getContent();
+				c = c.replace("\r\n","<br>");
+				b.setContent(c);
+				model.addAttribute("board", b);
+				model.addAttribute("member", m);
+				html = "TaeJun/board/answer";
+			} else {
+				html="redirect:/TaeJun/member/login"+"?fail=fail";
+			}
+		} catch (NullPointerException e) {
+			html="redirect:/TaeJun/member/login"+"?fail=fail";
+		}
+		return html;
+	}
+	
+	@RequestMapping(value="/answer-result", method=RequestMethod.GET)
+	public String answerPageResult(Answer answer, Model model) {
+		int bno = answer.getBno();
+		String html = "redirect:/TaeJun/board/detail?bno="+bno;
+		return html;
+	}
 	
 }//end BoardController
