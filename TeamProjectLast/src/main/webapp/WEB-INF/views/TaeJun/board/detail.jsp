@@ -98,9 +98,6 @@
 				<div class="form-group">
 					<label for="content">글 내용:</label>
 					<div class="well well-lg">
-						<br>
-						<img src="/ex02/resources/uploadFile/${board.bfile }" class="img-thumbnail" />
-						<br><br>
 						${board.content}
 					</div>
 				</div>
@@ -114,7 +111,7 @@
 		    
 		    <div class="panel-body">
 	    		<div class="form-group" align="right">
-		    	<a href="/ex02/resources/uploadFile/${board.bfile }" target="_blank">${board.bfile}</a>
+		    	<a href="/ex02/resources/uploadFile/${board.bno }" target="_blank">${board.bno}</a>
 		    	</div>
 		    </div>
 		    

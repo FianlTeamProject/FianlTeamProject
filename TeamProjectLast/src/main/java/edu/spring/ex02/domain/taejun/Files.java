@@ -21,7 +21,6 @@ public class Files {
 		this.bfile = bfile;
 	}
 	public Files() {
-		super();
 	}
 	
 	

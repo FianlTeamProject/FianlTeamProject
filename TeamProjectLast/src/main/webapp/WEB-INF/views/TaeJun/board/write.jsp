@@ -35,33 +35,62 @@
 </style>
 
 <script type="text/javascript">
-        var sel_file;
  
+        // 이미지 정보들을 담을 배열
+        var sel_files = [];
+        
         $(document).ready(function() {
-            $("#input_img").on("change", handleImgFileSelect);
+            $("#input_imgs").on("change", handleImgFileSelect);
         }); 
  
+        function fileUploadAction() {
+            console.log("fileUploadAction");
+            $("#input_imgs").trigger('click');
+        }
+ 
         function handleImgFileSelect(e) {
+ 
+            // 이미지 정보들을 초기화
+            sel_files = [];
+            $(".imgs_wrap").empty();
+ 
             var files = e.target.files;
             var filesArr = Array.prototype.slice.call(files);
  
+            var index = 0;
             filesArr.forEach(function(f) {
                 if(!f.type.match("image.*")) {
-                    alert("미리보기는 이미지만 지원합니다.");
+                    alert("확장자는 이미지 확장자만 가능합니다.");
                     return;
                 }
  
-                sel_file = f;
+                sel_files.push(f);
  
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    $("#img").attr("src", e.target.result);
+                	var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'></a>";
+                    $(".imgs_wrap").append(html);
+                    index++;
+ 
                 }
                 reader.readAsDataURL(f);
+                
             });
         }
- 
 </script>
+<script type="text/javascript">
+ 
+   function deleteImageAction(index) {            
+            console.log("index : "+index);
+            sel_files.splice(index, 1);
+ 
+            var img_id = "#img_id_"+index;
+            $(img_id).remove();
+ 
+            console.log(sel_files);
+        }        
+</script>
+
 <title>::WRITE::</title>
 </head>
 <body>
@@ -137,15 +166,22 @@
 	    		
 	    		<div class="panel-body">
 	    			   <div class="form-group">
-				    <input type="file" name="uploadFiles" id="input_img"
-				        placeholder="파일 선택" /> <!-- multiple 속성을 넣으면 다중 업로드 가능-->
+	    			   <div class="input_wrap">
+	    			   <a href="javascript:" onclick="fileUploadAction();" class="my_button"></a>
+				    <input type="file" name="uploadFiles" id="input_imgs" placeholder="파일 선택" multiple /> <!-- multiple 속성을 넣으면 다중 업로드 가능-->
+				    	</div>
 				       </div>
 	    		</div>
 	    		
 	    		<div class="panel-body">
-	    			<div class="img_warp">
-	    				<img id="img">	    			
-	    			</div>
+	    			<div>
+        				<h2><b>이미지 미리보기</b></h2>
+    				</div>
+				    <div>
+				        <div class="imgs_wrap">
+				            <img id="img" />
+				        </div>
+				    </div>
 	    		</div>
 	    		
 	    		<div align="center">
@@ -154,7 +190,9 @@
 	    		<br>
     		</form>
 		</div>
-	
-</div>
+
+
+
+
 </body>
 </html>

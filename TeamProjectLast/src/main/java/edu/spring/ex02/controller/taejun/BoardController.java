@@ -12,6 +12,8 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.SliderUI;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +26,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 import edu.spring.ex02.domain.taejun.Answer;
 import edu.spring.ex02.domain.taejun.Board;
+import edu.spring.ex02.domain.taejun.Files;
 import edu.spring.ex02.domain.taejun.Member;
 import edu.spring.ex02.pageutil.taejun.PageNumberMaker;
 import edu.spring.ex02.pageutil.taejun.PaginationCriteria;
 import edu.spring.ex02.service.taejun.BoardService;
+import edu.spring.ex02.service.taejun.FilesService;
 
 @Controller
 @RequestMapping(value="/TaeJun/board") // 상위 폴더의 주소값 (현재설정기준 : /ex02/WEB-INF/views'/board') 에 해당
@@ -38,6 +42,10 @@ public class BoardController {
 	
 	@Autowired
 	private BoardService service;
+	
+	@Autowired
+	private FilesService fileService;
+	
 	// 3:41
 	public String fail = "fail";
 	
@@ -110,12 +118,20 @@ public class BoardController {
 	
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String BoardWrite(Board b, MultipartFile[] uploadFiles,Model model) {
-		String result = "";
-		for (MultipartFile f : uploadFiles) {
-			result += saveFile(f);
+		Files f = new Files();
+		for (MultipartFile file : uploadFiles) {
+			try {
+				String fileName = saveFile(file);
+				f.setBno(b.getBno());
+				f.setBfile(fileName);
+				logger.info("Write ::::: BNO = "+f.getBno()+"::::: BFILE = "+f.getBfile());
+//				fileService.insert(f);
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		model.addAttribute("result", result);
-		b.setBfile(result);
 		service.insert(b);
 		return "redirect:/TaeJun/board/list";
 	}//end BoardWrite.POST
@@ -123,9 +139,15 @@ public class BoardController {
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
 	public void BoardDetail(int bno, Model model,String fail) {
 		Board b = service.select(bno);
+//		List<Files> f = fileService.select(bno);
+		
+		// 엔터처리를 <br>로 변환하여 제대로 보이게 수정
 		String c = b.getContent();
 		c = c.replace("\r\n","<br>");
 		b.setContent(c);
+		// 완료
+		
+//		model.addAttribute("file",f);
 		model.addAttribute("board",b);
 		model.addAttribute("fail",fail);
 	}//end BoardDetail.GET

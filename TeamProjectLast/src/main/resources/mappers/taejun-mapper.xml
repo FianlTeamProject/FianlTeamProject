@@ -65,8 +65,8 @@
     </select>
     
     <insert id="insert_Board">
-    	INSERT INTO ${junBoard} (${junTitle}, ${junContent}, ${junUserid}, ${junRegdate}, ${junBfile}) 
-    	VALUES(#{title}, #{content}, #{userid}, sysdate, #{bfile})
+    	INSERT INTO ${junBoard} (${junTitle}, ${junContent}, ${junUserid}, ${junRegdate}) 
+    	VALUES(#{title}, #{content}, #{userid}, sysdate)
     </insert>
     
     <update id="update_Board">
@@ -126,7 +126,7 @@
     
     <!-- 한 페이지에 보여줄 게시글만 검색 -->
     <select id="selectPage_Board" resultType="Board">
-	    select b.bno, b.title, b.content, b.userid, b.regdate, b.REPLYCNT, b.BFILE 
+	    select b.bno, b.title, b.content, b.userid, b.regdate, b.REPLYCNT 
 	    from (
 	        select rownum rn, a.*
 	        from (
@@ -186,9 +186,16 @@
     
     
     <!-- 파일 관련 -->
-    <select id="selectFiles" resultType="Files">
+    <!-- BNO로 파일 읽기 -->
+    <select id="select_Files" resultType="Files">
     	select * from ${junFiles} WHERE ${junBno} = #{bno} order by ${junBfile}
     </select>
+    
+    <!-- 파일 쓰기 -->
+    <insert id="insert_Files">
+    	INSERT INTO ${junFiles} (${junBno}, ${junBfile}) VALUES (#{bno}, #{bfile});
+    </insert>
+    
     
     
 </mapper>
