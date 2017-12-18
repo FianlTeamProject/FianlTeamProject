@@ -19,12 +19,12 @@ public class FilesDaoImple implements FilesDao {
 
 	@Override
 	public List<Files> read(int bno) {
-		return session.selectList(NAMESPACE+".select_Files");
+		return session.selectList(NAMESPACE+".select_Files",bno);
 	}
 
 	@Override
 	public int create(Files f) {
-		return session.insert(NAMESPACE+".insert_Files");
+		return session.insert(NAMESPACE+".insert_Files",f);
 	}
 
 }

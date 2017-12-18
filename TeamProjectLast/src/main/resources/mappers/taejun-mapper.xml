@@ -193,7 +193,7 @@
     
     <!-- 파일 쓰기 -->
     <insert id="insert_Files">
-    	INSERT INTO ${junFiles} (${junBno}, ${junBfile}) VALUES (#{bno}, #{bfile});
+    	INSERT INTO ${junFiles} (${junBno}, ${junBfile}) VALUES (#{bno}, #{bfile})
     </insert>
     
     

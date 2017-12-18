@@ -3,6 +3,7 @@ package edu.spring.ex02.domain.taejun;
 public class Files {
 	private int bno;
 	private String bfile;
+	
 	public int getBno() {
 		return bno;
 	}
@@ -16,7 +17,6 @@ public class Files {
 		this.bfile = bfile;
 	}
 	public Files(int bno, String bfile) {
-		super();
 		this.bno = bno;
 		this.bfile = bfile;
 	}

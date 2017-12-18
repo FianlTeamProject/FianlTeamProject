@@ -98,7 +98,12 @@
 				<div class="form-group">
 					<label for="content">글 내용:</label>
 					<div class="well well-lg">
+						<c:forEach var="f" items="${files}">
+							<img src="/ex02/resources/uploadFile/${f.bfile}">
+							<br>
+						</c:forEach>
 						${board.content}
+
 					</div>
 				</div>
 	    	</div>
@@ -111,7 +116,10 @@
 		    
 		    <div class="panel-body">
 	    		<div class="form-group" align="right">
-		    	<a href="/ex02/resources/uploadFile/${board.bno }" target="_blank">${board.bno}</a>
+	    		<c:forEach var="f" items="${files}">
+		    		<a href="/ex02/resources/uploadFile/${f.bfile}" target="_blank">${f.bfile}</a>
+		    		<br>
+		    	</c:forEach>
 		    	</div>
 		    </div>
 		    

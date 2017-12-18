@@ -4,6 +4,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 import java.io.File;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -119,27 +120,30 @@ public class BoardController {
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String BoardWrite(Board b, MultipartFile[] uploadFiles,Model model) {
 		Files f = new Files();
+		service.insert(b);
+		List<Board> b21 = service.select();
+		Board b11 = b21.get(0);
+		int bono = b11.getBno();
+		f.setBno(bono);
 		for (MultipartFile file : uploadFiles) {
 			try {
 				String fileName = saveFile(file);
-				f.setBno(b.getBno());
 				f.setBfile(fileName);
-				logger.info("Write ::::: BNO = "+f.getBno()+"::::: BFILE = "+f.getBfile());
-//				fileService.insert(f);
-				Thread.sleep(100);
+//				logger.info("Write ::::: BNO = "+bono+"::::: BFILE = "+f.getBfile());
+				fileService.insert(f);
+				Thread.sleep(50);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			} 
 		}
-		service.insert(b);
+		
 		return "redirect:/TaeJun/board/list";
 	}//end BoardWrite.POST
 	
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
 	public void BoardDetail(int bno, Model model,String fail) {
 		Board b = service.select(bno);
-//		List<Files> f = fileService.select(bno);
+		List<Files> f = fileService.select(bno);
 		
 		// 엔터처리를 <br>로 변환하여 제대로 보이게 수정
 		String c = b.getContent();
@@ -147,7 +151,12 @@ public class BoardController {
 		b.setContent(c);
 		// 완료
 		
-//		model.addAttribute("file",f);
+		logger.info("BoardController : : "+f.size());
+		if(f.size()==1) {
+			
+		}else {
+			model.addAttribute("files",f);
+		}		
 		model.addAttribute("board",b);
 		model.addAttribute("fail",fail);
 	}//end BoardDetail.GET
