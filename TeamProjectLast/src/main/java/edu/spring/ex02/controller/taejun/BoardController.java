@@ -53,7 +53,7 @@ public class BoardController {
 	private String saveFile(MultipartFile file) {
 		// 파일 이름 변경		
 		String sysdate = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-		UUID uuid = UUID.randomUUID();
+//		UUID uuid = UUID.randomUUID();
 		String saveName =sysdate + "_" + file.getOriginalFilename();
 //		logger.info("saveName: {}", saveName);
 		
@@ -121,20 +121,25 @@ public class BoardController {
 	public String BoardWrite(Board b, MultipartFile[] uploadFiles,Model model) {
 		Files f = new Files();
 		service.insert(b);
-		List<Board> b21 = service.select();
-		Board b11 = b21.get(0);
-		int bono = b11.getBno();
-		f.setBno(bono);
+		List<Board> b21 = service.select();		
 		for (MultipartFile file : uploadFiles) {
-			try {
-				String fileName = saveFile(file);
-				f.setBfile(fileName);
-//				logger.info("Write ::::: BNO = "+bono+"::::: BFILE = "+f.getBfile());
-				fileService.insert(f);
-				Thread.sleep(50);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			} 
+			logger.info(file.getOriginalFilename());
+			if(file.getOriginalFilename().equals("")) {
+
+			}else {
+				try {
+					String fileName = saveFile(file);
+					Board b11 = b21.get(0);
+					int bono = b11.getBno();
+					f.setBno(bono);
+					f.setBfile(fileName);
+					logger.info("Write ::::: BNO = "+bono+"::::: BFILE = "+f.getBfile());
+					fileService.insert(f);
+					Thread.sleep(50);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				} 
+			}
 		}
 		
 		return "redirect:/TaeJun/board/list";
@@ -151,12 +156,18 @@ public class BoardController {
 		b.setContent(c);
 		// 완료
 		
-		logger.info("BoardController : : "+f.size());
-		if(f.size()==1) {
+		try {
+			logger.info("BoardControllerDetail :::: Size="+f.size());
+			logger.info("BoardControllerDetail :::: f.get(1)="+f.get(0).getBfile());
+			if(f.get(0).getBfile()==null) {
+				
+			}else {
+				model.addAttribute("files",f);
+			}		
+		} catch (IndexOutOfBoundsException e) {
 			
-		}else {
-			model.addAttribute("files",f);
-		}		
+		}
+
 		model.addAttribute("board",b);
 		model.addAttribute("fail",fail);
 	}//end BoardDetail.GET

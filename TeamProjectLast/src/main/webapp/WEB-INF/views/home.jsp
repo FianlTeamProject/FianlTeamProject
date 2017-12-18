@@ -1,3 +1,4 @@
+<%@page import="edu.spring.ex02.domain.taejun.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -48,22 +49,72 @@
 
 	<div class="row content"> <!-- 로그인  페이지 시작 -->
 		<div class="col-sm-3 sidenav">
-			<P> ${serverTime}. </P>
-			<form method="post">
-				<div class="input-group form-group " id="idtbl" >
-					<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-					<input id="mid" type="text" class="form-control" name="mid" required placeholder="User ID">
-				</div>
+		
+		<%
+				String userId;
+				try{
+					Member loginResult = (Member) session.getAttribute("loginResult");
+					
+					if(loginResult!=null) {
+						userId=loginResult.getMid();
+						out.print("<li><a href=\"\"><span class=\"glyphicon glyphicon-user\"></span>"+loginResult.getMid()+"</li>");
+						out.print("<li><a href=\"/ex02/logout\"></span> 로그아웃</a></li>");
+					}else {
+						out.print("	<form method=\"post\">\r\n" + 
+								"		<div class=\"input-group form-group \" id=\"idtbl\" >\r\n" + 
+								"			<span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\"></i></span>\r\n" + 
+								"			<input id=\"mid\" type=\"text\" class=\"form-control\" name=\"mid\" required placeholder=\"User ID\">\r\n" + 
+								"		</div>\r\n" + 
+								"		\r\n" + 
+								"		<div class=\"input-group form-group\" id=\"pwddiv\">\r\n" + 
+								"			<span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\"></i></span>\r\n" + 
+								"			<input id=\"pwd\" type=\"password\" class=\"form-control\" name=\"pwd\" required placeholder=\"Password\">\r\n" + 
+								"		</div>\r\n" + 
+								"		<br>\r\n" + 
+								"		<div class=\"input-group\" align=\"right\">\r\n" + 
+								"			<input class=\"btn btn-default\" id=\"submit\" type=\"submit\" value=\"Login\" />\r\n" +
+								"			<button class=\"btn btn-default\"><a href=\"/ex02/TaeJun/member/register\"><span class=\"glyphicon glyphicon-user\"></span> 회원가입</a></button>"+
+								"		</div>\r\n" + 
+								"	</form>");
+						
+						
+						userId="손님";
+					}
+				} catch (NullPointerException e) {
+					out.print("	<form method=\"post\">\r\n" + 
+							"		<div class=\"input-group form-group \" id=\"idtbl\" >\r\n" + 
+							"			<span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\"></i></span>\r\n" + 
+							"			<input id=\"mid\" type=\"text\" class=\"form-control\" name=\"mid\" required placeholder=\"User ID\">\r\n" + 
+							"		</div>\r\n" + 
+							"		\r\n" + 
+							"		<div class=\"input-group form-group\" id=\"pwddiv\">\r\n" + 
+							"			<span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\"></i></span>\r\n" + 
+							"			<input id=\"pwd\" type=\"password\" class=\"form-control\" name=\"pwd\" required placeholder=\"Password\">\r\n" + 
+							"		</div>\r\n" + 
+							"		<br>\r\n" + 
+							"		<div class=\"input-group\" align=\"right\">\r\n" + 
+							"			<input class=\"btn btn-default\" id=\"submit\" type=\"submit\" value=\"Login\" />\r\n" +
+							"			<button><a href=\"/ex02/TaeJun/member/register\"><span class=\"glyphicon glyphicon-user\"></span> 회원가입</a></button>"+
+							"		</div>\r\n" + 
+							"	</form>");
+					userId="손님";
+				}
+				%>
 				
-				<div class="input-group form-group" id="pwddiv">
-					<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-					<input id="pwd" type="password" class="form-control" name="pwd" required placeholder="Password">
-				</div>
-				<br>
-				<div class="input-group" align="center">
-					<input class="btn btn-default" id="submit" type="submit" value="Login" />
-				</div>
-			</form>
+	
+<input type="hidden" id="failput" name="failput" value="${fail}"/>
+
+<script>
+$(document).ready(function() {
+	function failed() {
+		var fail= $('#failput').val();
+			if('fail'==fail){
+				alert('로그인이 필요한 기능입니다.');
+			}
+	}
+	failed();
+});
+</script>
 			
 			<div class="col-sm-9">
 				채팅이 들어갈 공간
