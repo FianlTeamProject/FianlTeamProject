@@ -40,7 +40,7 @@
 		<div class="container-fluid">
 			<div class="navbar-header">
 			
-			<a class="navbar-brand" href="/ex02/TaeJun/board/list">홈페이지</a></div>
+			<a class="navbar-brand" href="/ex02">홈페이지</a></div>
 			<ul class="nav navbar-nav">
 				<li><a href="/ex02/TaeJun/board/write">새 글 작성</a></li>
 			</ul>
@@ -95,7 +95,7 @@
 			<c:forEach var="board" items="${boardList}">
 			<tr>
 				<td>${board.bno}</td>
-				<td><a href="detail?bno=${board.bno}">${board.title}</a> [${board.replycnt }]</td>
+				<td><a href="/ex02/TaeJun/board/detail?bno=${board.bno}">${board.title}</a> [${board.replycnt }]</td>
 				<td>${board.userid}</td>
 				<td><fmt:formatDate value="${board.regdate}" pattern="yyyy년 MM월dd일 HH:mm"/></td>
 			</tr>
@@ -105,15 +105,15 @@
 	
 	<ul class="pagination">
 		<c:if test="${pageMaker.prev}">
-			<li><a href="list?page=${(pageMaker.startPage)-1 }&perPage=10">prev</a></li>
+			<li><a href="/ex02/TaeJun/board/list?page=${(pageMaker.startPage)-1 }&perPage=10">prev</a></li>
 		</c:if>
 		
 		<c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }"> 
-			<li id="${num }"><a href="list?page=${num }&perPage=10">${num }</a></li>
+			<li id="${num }"><a href="/ex02/TaeJun/board/list?page=${num }&perPage=10">${num }</a></li>
 		</c:forEach>
 		
 		<c:if test="${pageMaker.next}">
-			<li><a href="list?page=${(pageMaker.endPage)+1 }&perPage=10">next</a></li>
+			<li><a href="/ex02/TaeJun/board/list?page=${(pageMaker.endPage)+1 }&perPage=10">next</a></li>
 		</c:if>
 	</ul>
 </div>

@@ -42,7 +42,7 @@ public class BoardController {
 	private static final String UPLOAD_PATH = "C:\\STUDY\\lab-spring\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\TeamProjectLast\\resources\\uploadFile";
 	
 	@Autowired
-	private BoardService service;
+	private BoardService boardService;
 	
 	@Autowired
 	private FilesService fileService;
@@ -87,11 +87,11 @@ public class BoardController {
 			page=1;
 			c = new PaginationCriteria(page,10);
 		}
-		List<Board> list = service.select(c);
+		List<Board> list = boardService.select(c);
 		
 		PageNumberMaker maker = new PageNumberMaker();
 		maker.setCriteria(c);
-		maker.setTotalCount(service.getTotalCount());
+		maker.setTotalCount(boardService.getTotalCount());
 		maker.setPageMakerData();
 		model.addAttribute("page",page);
 		model.addAttribute("boardList",list);
@@ -120,8 +120,8 @@ public class BoardController {
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String BoardWrite(Board b, MultipartFile[] uploadFiles,Model model) {
 		Files f = new Files();
-		service.insert(b);
-		List<Board> b21 = service.select();		
+		boardService.insert(b);
+		List<Board> b21 = boardService.select();		
 		for (MultipartFile file : uploadFiles) {
 			logger.info(file.getOriginalFilename());
 			if(file.getOriginalFilename().equals("")) {
@@ -147,7 +147,7 @@ public class BoardController {
 	
 	@RequestMapping(value="/detail", method=RequestMethod.GET)
 	public void BoardDetail(int bno, Model model,String fail) {
-		Board b = service.select(bno);
+		Board b = boardService.select(bno);
 		List<Files> f = fileService.select(bno);
 		
 		// 엔터처리를 <br>로 변환하여 제대로 보이게 수정
@@ -176,7 +176,7 @@ public class BoardController {
 	public String BoardUpdate (int bno, HttpSession session, Model model) {
 		String html = "";
 		Member m;
-		Board b = service.select(bno);
+		Board b = boardService.select(bno);
 		try {
 			m = (Member) session.getAttribute("loginResult");			
 			if (m!=null) {
@@ -202,7 +202,7 @@ public class BoardController {
 	
 	@RequestMapping(value="/update", method=RequestMethod.POST)
 	public String BoardUpdate (Board b) {
-		service.update(b);
+		boardService.update(b);
 		return "redirect:/TaeJun/board/list";
 	}//end BoardUpdate.POST
 	
@@ -210,12 +210,12 @@ public class BoardController {
 	public String BoardDelete (int bno, HttpSession session, Model model) {
 		String html = "";
 		Member m;
-		Board b = service.select(bno);
+		Board b = boardService.select(bno);
 		try {
 			m = (Member) session.getAttribute("loginResult");			
 			if (m!=null) {
 				if (m.getMid().equals(b.getUserid())) {
-					int result = service.delete(bno);
+					int result = boardService.delete(bno);
 					logger.info("DELETE RESULT : "+result);
 					html = "redirect:/TaeJun/board/list";
 				}else {
@@ -246,11 +246,11 @@ public class BoardController {
 				page=1;
 				c = new PaginationCriteria(page,10,searchWord);
 			}
-			List<Board> list = service.select_id(c);
+			List<Board> list = boardService.select_id(c);
 			
 			PageNumberMaker maker = new PageNumberMaker();
 			maker.setCriteria(c);
-			maker.setTotalCount(service.getSearchCountId(searchWord));
+			maker.setTotalCount(boardService.getSearchCountId(searchWord));
 			maker.setPageMakerData();
 			model.addAttribute("page",page);
 			model.addAttribute("boardList",list);
@@ -268,11 +268,11 @@ public class BoardController {
 				page=1;
 				c = new PaginationCriteria(page,10,searchWord);
 			}
-			List<Board> list = service.select_title(c);
+			List<Board> list = boardService.select_title(c);
 			
 			PageNumberMaker maker = new PageNumberMaker();
 			maker.setCriteria(c);
-			maker.setTotalCount(service.getSearchCountTitle(searchWord));
+			maker.setTotalCount(boardService.getSearchCountTitle(searchWord));
 			maker.setPageMakerData();
 			model.addAttribute("page",page);
 			model.addAttribute("boardList",list);
@@ -289,11 +289,11 @@ public class BoardController {
 				page=1;
 				c = new PaginationCriteria(page,10,searchWord);
 			}
-			List<Board> list = service.select_title_content(c);
+			List<Board> list = boardService.select_title_content(c);
 			
 			PageNumberMaker maker = new PageNumberMaker();
 			maker.setCriteria(c);
-			maker.setTotalCount(service.getSearchCountTitleContent(searchWord));
+			maker.setTotalCount(boardService.getSearchCountTitleContent(searchWord));
 			maker.setPageMakerData();
 			model.addAttribute("page",page);
 			model.addAttribute("boardList",list);

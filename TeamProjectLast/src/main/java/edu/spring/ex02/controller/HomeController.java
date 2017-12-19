@@ -2,6 +2,7 @@ package edu.spring.ex02.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
@@ -14,7 +15,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import edu.spring.ex02.domain.taejun.Board;
 import edu.spring.ex02.domain.taejun.Member;
+import edu.spring.ex02.pageutil.taejun.PageNumberMaker;
+import edu.spring.ex02.pageutil.taejun.PaginationCriteria;
+import edu.spring.ex02.service.taejun.BoardService;
 import edu.spring.ex02.service.taejun.MemberService;
 
 /**
@@ -25,13 +30,16 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	@Autowired
-	private MemberService service;
+	private MemberService memberService;
+	
+	@Autowired
+	private BoardService boardService;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String home(Locale locale, Model model, Integer page, Integer perPage) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
@@ -41,19 +49,36 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
+		PaginationCriteria c;
+		if (page!=null&&perPage!=null) {
+			c = new PaginationCriteria(page, perPage);
+		}else {
+			page=1;
+			c = new PaginationCriteria(page,10);
+		}
+		List<Board> list = boardService.select(c);
+		
+		PageNumberMaker maker = new PageNumberMaker();
+		maker.setCriteria(c);
+		maker.setTotalCount(boardService.getTotalCount());
+		maker.setPageMakerData();
+		model.addAttribute("page",page);
+		model.addAttribute("boardList",list);
+		model.addAttribute("pageMaker",maker);
+		
 		return "home";
 	}//end home
 	
 	@RequestMapping(value="/", method=RequestMethod.POST)
 	private String memberLogin(Member m, HttpSession session) {
 //		logger.info(m.getMid());
-		Member result = service.login(m);
+		Member result = memberService.login(m);
 		String html = "";
 		if (result!=null) { //로그인 성공
 			session.setAttribute("loginResult", result);
-			html = "home";
+			html = "redirect:/";
 		}else { //로그인 실패
-			html = "home";
+			html = "redirect:/";
 		}
 		return html;
 	}//end Login

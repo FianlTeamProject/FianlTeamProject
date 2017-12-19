@@ -36,7 +36,7 @@
 		<div class="container-fluid">
 			<div class="navbar-header">
 			
-			<a class="navbar-brand" href="/ex02/TaeJun/board/list">홈페이지</a></div>
+			<a class="navbar-brand" href="/ex02">홈페이지</a></div>
 			<ul class="nav navbar-nav">
 				<li><a href="/ex02/TaeJun/board/update?bno=${board.bno }">이 글 수정</a></li>
 				<li><a href="/ex02/TaeJun/board/delete?bno=${board.bno }">이 글 삭제</a></li>

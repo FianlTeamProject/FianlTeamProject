@@ -100,7 +100,7 @@
 		<div class="container-fluid">
 			<div class="navbar-header">
 			
-			<a class="navbar-brand" href="/ex02/TaeJun/board/list">홈페이지</a></div>
+			<a class="navbar-brand" href="/ex02">홈페이지</a></div>
 			<ul class="nav navbar-nav">
 				<li><a href="/ex02/board/write">새 글 작성</a></li>
 			</ul>

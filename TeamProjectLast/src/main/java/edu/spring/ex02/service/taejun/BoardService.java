@@ -11,7 +11,9 @@ public interface BoardService {
 	
 	List<Board> select(); // 전체 검색
 	Board select(int bno); // 글번호 검색
+	
 	List<Board> select_id(String userid); // 작성자 아이디 검색
+	
 	List<Board> select(String title);
 	List<Board> select(String title, String content);// 글제목 + 글내용 검색
 	int insert(Board b); // 새 글 작성
@@ -20,6 +22,9 @@ public interface BoardService {
 	List<Board> select (Map<String, Integer> args);
 	int getTotalCount();
 	List<Board> select (PaginationCriteria c);
+	
+	
+	
 	List<Board> select_id (PaginationCriteria c);
 	List<Board> select_title (PaginationCriteria c);
 	List<Board> select_title_content (PaginationCriteria c);

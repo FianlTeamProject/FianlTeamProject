@@ -46,12 +46,50 @@
 </head>
 <body>
 <div class="container-fluid">
+<div class="container">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	
+		<div class="container-fluid">
+		
+			<div class="navbar-header">
+			
+			<a class="navbar-brand" href="/ex02">홈페이지</a></div>
+			
+			<ul class="nav navbar-nav navbar-right">
+				
+				<%
+				String userId;
+				try{
+					Member loginResult = (Member) session.getAttribute("loginResult");
+					if(loginResult!=null) {
+						userId=loginResult.getMid();
+						out.print("<li><a href=\"\"><span class=\"glyphicon glyphicon-user\"></span>"+loginResult.getMid()+"</li>");
+						out.print("<li><a href=\"/ex02/logout\"></span> 로그아웃</a></li>");
+					}else {
+						userId="손님";
+						out.print("<li><a href=\"/ex02/TaeJun/member/register\"><span class=\"glyphicon glyphicon-user\"></span> 회원가입</a></li>");
+						out.print("<li><a href=\"/ex02/TaeJun/member/login\"><span class=\"glyphicon glyphicon-log-in\"></span> 로그인</a></li>");
+					}
+				} catch (NullPointerException e) {
+					userId="손님";
+					out.print("<li><a href=\"/ex02/TaeJun/member/register\"><span class=\"glyphicon glyphicon-user\"></span> 회원가입</a></li>");
+					out.print("<li><a href=\"/ex02/TaeJun/member/login\"><span class=\"glyphicon glyphicon-log-in\"></span> 로그인</a></li>");
+				}
+				%>
+				
+			</ul>
+			
+		</div>
+	</nav>
 
+	<div class="jumbotron">
+		<h1 align="center">::MainPage::</h1>
+	</div>
+	
 	<div class="row content"> <!-- 로그인  페이지 시작 -->
 		<div class="col-sm-3 sidenav">
 		
 		<%
-				String userId;
 				try{
 					Member loginResult = (Member) session.getAttribute("loginResult");
 					
@@ -94,9 +132,9 @@
 							"		<br>\r\n" + 
 							"		<div class=\"input-group\" align=\"right\">\r\n" + 
 							"			<input class=\"btn btn-default\" id=\"submit\" type=\"submit\" value=\"Login\" />\r\n" +
-							"			<button><a href=\"/ex02/TaeJun/member/register\"><span class=\"glyphicon glyphicon-user\"></span> 회원가입</a></button>"+
-							"		</div>\r\n" + 
-							"	</form>");
+							"		</div>\r\n" +
+							"	</form>"+
+							"<button> <a href=\"/ex02/TaeJun/member/register\"> <span class=\"glyphicon glyphicon-user\"> </span> 회원가입</a> </button>");
 					userId="손님";
 				}
 				%>
@@ -122,9 +160,85 @@ $(document).ready(function() {
 		</div> <!-- 로그인 페이지 끝 -->
 		
 		
-		<div class="col-sm-9"> <!-- 게시판 템플릿 -->
-			<div class="col-sm-4">
-				게시판 1번이 들어갈 div
+		<!-- 1번게시판 -->
+<script>$(document).ready(function() {
+	
+	// 검색할 댓글의 게시글 번호
+	// JQuery를 사용해서 AJax요청을 보내는 함수들 중에서
+	// $.getJSON(url, data, callback)
+	// 해당 url로 HTTP GET 방식의 ajax 요청을 보내고,	
+	// JSON 객체를 로드하는 함수
+	// url(필수) : 서버로 요청을 보내는 주소
+	// data (선택): 요청과 함께 서버로 보내는 데이터. 생략 가능.
+	// callback (선택): 응답을 받았을 때 처리할 일을 정의하는 콜백 함수
+	function getOneboard() {
+		$.ajax({
+			url: '/ex02/TaeJun/board/list',
+			success: function(res, status, xhr) {
+				$('#oneboard').html(res);
+			}
+		});
+	}
+	//getOneboard();
+	
+});</script>
+
+			<div class="col-sm-9">
+				<div id="oneboard" class="well well-lg">
+				<div align="center">
+					<script>
+						$(document).ready(function(){
+						    $('[data-toggle="tooltip"]').tooltip(); 
+						});
+					</script>
+					<button style="margin:7px 15px 17px 0;"
+						type="button"
+						class="btn btn-success"
+						data-toggle="tooltip"
+						data-placement="bottom"
+						title=""
+						data-original-title="QA 게시판입니다.">
+						<font style="vertical-align: inherit;">
+							<font style="vertical-align: inherit;">1번 게시판.</font>
+						</font>
+					</button>
+				</div>
+					<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<td>번호</td>
+									<td>제목</td>
+									<td>작성자</td>
+									<td>시간</td>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<c:forEach var="board" items="${boardList}">
+								<tr>
+									<td>${board.bno}</td>
+									<td><a href="/ex02/TaeJun/board/detail?bno=${board.bno}">${board.title}</a> [${board.replycnt }]</td>
+									<td>${board.userid}</td>
+									<td><fmt:formatDate value="${board.regdate}" pattern="yyyy년 MM월dd일 HH:mm"/></td>
+								</tr>
+								</c:forEach>
+							</tbody>
+					</table>
+						
+						<ul class="pagination">
+							<c:if test="${pageMaker.prev}">
+								<li><a href="?page=${(pageMaker.startPage)-1 }&perPage=10">prev</a></li>
+							</c:if>
+							
+							<c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }"> 
+								<li id="${num }"><a href="?page=${num }&perPage=10">${num }</a></li>
+							</c:forEach>
+							
+							<c:if test="${pageMaker.next}">
+								<li><a href="?page=${(pageMaker.endPage)+1 }&perPage=10">next</a></li>
+							</c:if>
+						</ul>
+				</div>
 			</div> <!-- 1번 게시판 -->
 			
 			
@@ -141,7 +255,6 @@ $(document).ready(function() {
 			
 			
 		</div> <!-- 미리보기용인거시야 -->
-	</div> <!-- 팜플렛 끝 -->
 	
 	<footer class="container-fluid text-center">
   		<p>Footer Text</p>
