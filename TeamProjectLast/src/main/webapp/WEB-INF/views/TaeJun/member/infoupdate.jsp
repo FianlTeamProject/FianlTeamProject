@@ -9,12 +9,11 @@
 <!-- jQuery  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- bootstrap JS -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <!-- bootstrap CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>::질문/답변 게시판::</title>
+<title>::TITLE::</title>
 <style>
 	select { 
 		width: 100px; /* 원하는 너비설정 */
@@ -39,23 +38,11 @@
 			
 			<a class="navbar-brand" href="/ex02">홈페이지</a></div>
 			<ul class="nav navbar-nav">
-				<li><a href="/ex02/board/write">새 글 작성</a></li>
+			
 			</ul>
 			
 			<ul class="nav navbar-nav navbar-right">
-				<form class="navbar-form navbar-left" action="" method="get">
-				<select class="selectpicker" name="searchType">
-					<option value="1">작성자</option>
-					<option value="2">제목</option>
-					<option value="3">제목+내용</option>
-				</select>
 				
-				<div class="form-group">
-					<input type="text" class="form-control" name="searchWord" required placeholder="Search">
-				</div>
-				
-					<button type="submit" class="btn btn-default">Submit</button>
-				</form>
 				
 				<%
 				String userId;
@@ -63,17 +50,17 @@
 					Member loginResult = (Member) session.getAttribute("loginResult");
 					if(loginResult!=null) {
 						userId=loginResult.getMid();
-						out.print("<li><a href=\"\"><span class=\"glyphicon glyphicon-user\"></span>"+loginResult.getMid()+"</li>");
-						out.print("<li><a href=\"\"></span> 로그아웃</a></li>");
+						out.print("<li><a href=\"/ex02/TaeJun/member/info\"><span class=\"glyphicon glyphicon-user\"></span>"+loginResult.getMid()+"</li>");
+						out.print("<li><a href=\"/ex02/logout\"></span> 로그아웃</a></li>");
 					}else {
 						userId="손님";
-						out.print("<li><a href=\"\"><span class=\"glyphicon glyphicon-user\"></span> 회원가입</a></li>");
-						out.print("<li><a href=\"\"><span class=\"glyphicon glyphicon-log-in\"></span> 로그인</a></li>");
+						out.print("<li><a href=\"/ex02/TaeJun/member/register\"><span class=\"glyphicon glyphicon-user\"></span> 회원가입</a></li>");
+						out.print("<li><a href=\"/ex02/TaeJun/member/login\"><span class=\"glyphicon glyphicon-log-in\"></span> 로그인</a></li>");
 					}
 				} catch (NullPointerException e) {
 					userId="손님";
-					out.print("<li><a href=\"\"><span class=\"glyphicon glyphicon-user\"></span> 회원가입</a></li>");
-					out.print("<li><a href=\"\"><span class=\"glyphicon glyphicon-log-in\"></span> 로그인</a></li>");
+					out.print("<li><a href=\"/ex02/TaeJun/member/register\"><span class=\"glyphicon glyphicon-user\"></span> 회원가입</a></li>");
+					out.print("<li><a href=\"/ex02/TaeJun/member/login\"><span class=\"glyphicon glyphicon-log-in\"></span> 로그인</a></li>");
 				}
 				%>
 				
@@ -81,10 +68,15 @@
 			
 		</div>
 	</nav>
-
-	<div class="jumbotron">
-		<h1 align="center">::질문 답변 게시판입니다::</h1>
-		<h3 align="right">- HanTaeJun...</h3>
+	
+	<div class="well well-lg" style="margin-top: 60px;" align="center">
+		ID : 무엇
+		<br>
+		PWD : 수정?
+		<br>
+		EMAIL : 수정!
+		<br>
+		<button>확인?</button>
 	</div>
 	
 </div>

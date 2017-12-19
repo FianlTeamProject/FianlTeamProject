@@ -5,14 +5,29 @@ public class Member {
 	private String mid;
 	private String pwd;
 	private String email;
+	private String passwd;
 	
 	public Member() {}
 
 	public Member(String mid, String pwd, String email) {
-		super();
 		this.mid = mid;
 		this.pwd = pwd;
 		this.email = email;
+	}
+	
+	public Member(String mid, String pwd, String email, String passwd) {
+		this.mid = mid;
+		this.pwd = pwd;
+		this.email = email;
+		this.passwd = passwd;
+	}
+	
+	public String getPasswd() {
+		return passwd;
+	}
+
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
 	}
 
 	public String getMid() {

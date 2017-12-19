@@ -9,9 +9,10 @@
 <!-- jQuery  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- bootstrap JS -->
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- bootstrap CSS -->
-<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
   <style>
@@ -88,7 +89,7 @@
 	
 	<div class="row content"> <!-- 로그인  페이지 시작 -->
 		<div class="col-sm-3 sidenav">
-		
+			<div style="margin-top: 10%;">
 		<%
 				try{
 					Member loginResult = (Member) session.getAttribute("loginResult");
@@ -111,7 +112,7 @@
 								"		<br>\r\n" + 
 								"		<div class=\"input-group\" align=\"right\">\r\n" + 
 								"			<input class=\"btn btn-default\" id=\"submit\" type=\"submit\" value=\"Login\" />\r\n" +
-								"			<button class=\"btn btn-default\"><a href=\"/ex02/TaeJun/member/register\"><span class=\"glyphicon glyphicon-user\"></span> 회원가입</a></button>"+
+								"			<button style=\"margin-left: 35px\" class=\"btn btn-default\"><a href=\"/ex02/TaeJun/member/register\"><span class=\"glyphicon glyphicon-user\"></span> 회원가입</a></button>"+
 								"		</div>\r\n" + 
 								"	</form>");
 						
@@ -138,7 +139,7 @@
 					userId="손님";
 				}
 				%>
-				
+				</div>
 	
 <input type="hidden" id="failput" name="failput" value="${fail}"/>
 
@@ -154,7 +155,7 @@ $(document).ready(function() {
 });
 </script>
 			
-			<div class="col-sm-9">
+			<div style="margin-top: 15%;" class="col-sm-9">
 				채팅이 들어갈 공간
 			</div>
 		</div> <!-- 로그인 페이지 끝 -->
@@ -181,9 +182,11 @@ $(document).ready(function() {
 	}
 	//getOneboard();
 	
+	var thisPage = ${page};
+	$('#'+thisPage).addClass("active");
+	
 });</script>
-
-			<div class="col-sm-9">
+			<div class="col-sm-4">
 				<div id="oneboard" class="well well-lg">
 				<div align="center">
 					<script>
@@ -199,7 +202,7 @@ $(document).ready(function() {
 						title=""
 						data-original-title="QA 게시판입니다.">
 						<font style="vertical-align: inherit;">
-							<font style="vertical-align: inherit;">1번 게시판.</font>
+							<font style="vertical-align: inherit;"><a href="/ex02/TaeJun/board/list">1번 게시판.</a></font>
 						</font>
 					</button>
 				</div>
@@ -209,7 +212,6 @@ $(document).ready(function() {
 									<td>번호</td>
 									<td>제목</td>
 									<td>작성자</td>
-									<td>시간</td>
 								</tr>
 							</thead>
 							
@@ -219,7 +221,6 @@ $(document).ready(function() {
 									<td>${board.bno}</td>
 									<td><a href="/ex02/TaeJun/board/detail?bno=${board.bno}">${board.title}</a> [${board.replycnt }]</td>
 									<td>${board.userid}</td>
-									<td><fmt:formatDate value="${board.regdate}" pattern="yyyy년 MM월dd일 HH:mm"/></td>
 								</tr>
 								</c:forEach>
 							</tbody>
@@ -239,7 +240,9 @@ $(document).ready(function() {
 							</c:if>
 						</ul>
 				</div>
+				
 			</div> <!-- 1번 게시판 -->
+			
 			
 			
 			
@@ -255,7 +258,7 @@ $(document).ready(function() {
 			
 			
 		</div> <!-- 미리보기용인거시야 -->
-	
+	</div>
 	<footer class="container-fluid text-center">
   		<p>Footer Text</p>
 	</footer>

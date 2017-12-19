@@ -71,7 +71,7 @@ public class MemberController {
 	
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	private String memberLogin(Member m, HttpSession session) {
+	private String memberLogin(Member m, HttpSession session, Model model) {
 //		logger.info(m.getMid());
 		Member result = service.login(m);
 		String html = "";
@@ -79,6 +79,7 @@ public class MemberController {
 			session.setAttribute("loginResult", result);
 			html = "redirect:/TaeJun/board/list";
 		}else { //로그인 실패
+			model.addAttribute("fail","fail2");
 			html = "TaeJun/member/login";
 		}
 		return html;
@@ -93,6 +94,20 @@ public class MemberController {
 	@RequestMapping(value="/info", method=RequestMethod.GET)
 	private void memberInfo(HttpSession session) {
 		Member m = (Member) session.getAttribute("loginResult");
+	}//end memberInfo
+	
+	@RequestMapping(value="/info", method=RequestMethod.POST)
+	private String memberInfoUpdate(HttpSession session, String pwd, Model model) {
+		String html = "";
+		Member m = (Member) session.getAttribute("loginResult");
+		Member checkPwdMember = service.check(m.getMid());
+		if(pwd.equals(checkPwdMember.getPasswd())) {//비밀번호가 같음
+			html="TaeJun/member/infoupdate";
+		}else {//다름
+			model.addAttribute("fail","fail2");
+			html="TaeJun/member/info";
+		}
+		return html;
 	}//end memberInfo
 	
 	

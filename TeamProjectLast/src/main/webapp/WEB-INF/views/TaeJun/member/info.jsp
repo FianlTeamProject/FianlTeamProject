@@ -9,9 +9,10 @@
 <!-- jQuery  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- bootstrap JS -->
-<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- bootstrap CSS -->
-<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>::Information::</title>
 <style>
@@ -38,30 +39,18 @@
 			
 			<a class="navbar-brand" href="/ex02">홈페이지</a></div>
 			<ul class="nav navbar-nav">
-				<li><a href="/ex02/TaeJun/board/write">새 글 작성</a></li>
+				
 			</ul>
 			
 			<ul class="nav navbar-nav navbar-right">
-				<form class="navbar-form navbar-left" action="/ex02/TaeJun/board/search" method="get">
-				<select class="selectpicker" name="searchType">
-					<option value="1">작성자</option>
-					<option value="2">제목</option>
-					<option value="3">제목+내용</option>
-				</select>
 				
-				<div class="form-group">
-					<input type="text" class="form-control" name="searchWord" required placeholder="Search">
-				</div>
-				
-					<button type="submit" class="btn btn-default">Submit</button>
-				</form>
 				
 				<%
 				try{
 					Member loginResult = (Member) session.getAttribute("loginResult");
 					if(loginResult!=null) {
 						out.print("<li><a href=\"/ex02/TaeJun/member/info\"><span class=\"glyphicon glyphicon-user\"></span>"+loginResult.getMid()+"</li>");
-						out.print("<li><a href=\"/ex02/TaeJun/member/logout\"></span> 로그아웃</a></li>");
+						out.print("<li><a href=\"/ex02/logout\"></span> 로그아웃</a></li>");
 					}else {
 						out.print("<li><a href=\"/ex02/TaeJun/member/register\"><span class=\"glyphicon glyphicon-user\"></span> 회원가입</a></li>");
 						out.print("<li><a href=\"/ex02/TaeJun/member/login\"><span class=\"glyphicon glyphicon-log-in\"></span> 로그인</a></li>");
@@ -79,9 +68,41 @@
 
 	<div class="jumbotron">
 		<h1 align="center">::[ <%try{Member loginResult = (Member) session.getAttribute("loginResult"); out.print(loginResult.getMid());}catch(NullPointerException e){} %> ]님의 정보 ::</h1>
-		<h3 align="right"><%try{Member loginResult = (Member) session.getAttribute("loginResult"); out.print(loginResult.getEmail());}catch(NullPointerException e){} %></h3>
+		<h3 align="right"><%try{Member loginResult = (Member) session.getAttribute("loginResult"); out.print(loginResult.getEmail());}catch(NullPointerException e){} %></h3>	
 	</div>
-	
+	<div id="oneboard" align="center">
+		<form method="post">
+			<div class="input-group form-group" id="pwddiv">
+				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+				<input id="pwd" type="password" class="form-control" name="pwd" required placeholder="Password">
+			</div>
+			<br>
+			<div class="input-group" align="right">
+				<input class="btn btn-default" id="submit" type="submit" value="정보 수정" />
+			</div>
+		</form>
+	</div>
+	<input type="hidden" id="failput" name="failput" value="${fail}"/>
 </div>
+
+<script>
+$(document).ready(function() {
+	function failed() {
+		var fail= $('#failput').val();
+			if('fail'==fail){
+				alert('로그인이 필요한 기능입니다.');
+			}
+	}
+	failed();
+	
+	function failed2() {
+		var fail= $('#failput').val();
+			if('fail2'==fail){
+				alert('비밀번호를 확인해주세요.');
+			}
+	}
+	failed2();
+});
+</script>
 </body>
 </html>
