@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- www.mybatis.org -->
+  
+  <mapper namespace="edu.spring.ex02.mappers.ReplyMapper">
+  
+  <select id="selectAll" resultType="Reply">
+  select * from test_reply order by rno desc
+  </select>
+  
+  <delete id="delete">
+  DELETE FROM test_reply WHERE rno = #{rno}
+  </delete>
+  
+
+  </mapper>
