@@ -210,7 +210,7 @@ $(document).ready(function() {
 						title=""
 						data-original-title="QA 게시판입니다.">
 						<font style="vertical-align: inherit;">
-							<font style="vertical-align: inherit;"><a href="/ex02/TaeJun/board/list">1번 게시판.</a></font>
+							<font style="vertical-align: inherit;"><a href="/ex02/TaeJun/board/list">질문 답변 게시판</a></font>
 						</font>
 					</button>
 				</div>
@@ -256,7 +256,7 @@ $(document).ready(function() {
 						title=""
 						data-original-title="토론 게시판입니다.">
 						<font style="vertical-align: inherit;">
-							<font style="vertical-align: inherit;"><a href="/ex02/hyunho/board/list">2번 게시판.</a></font>
+							<font style="vertical-align: inherit;"><a href="/ex02/hyunho/board/list">토론 게시판</a></font>
 						</font>
 					</button>
 				</div>
@@ -285,9 +285,26 @@ $(document).ready(function() {
 			</div> <!-- 2번 게시판 -->
 			
 			
-			
-			<div class="col-sm-4">
-				게시판 3번이 들어갈 div
+			<div class="col-sm-4 well well-lg">
+				<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<td>번호</td>
+									<td>제목</td>
+									<td>작성자</td>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<c:forEach var="l" items="${list3}">
+								<tr>
+									<td>${l.bno}</td>
+									<td><a href="/ex02/songgyu/lecture?bno=${l.bno}&address=${l.address}">${l.title}</a></td>
+									<td>${l.name}</td>
+								</tr>
+								</c:forEach>
+							</tbody>
+					</table>
 			</div> <!-- 3번 게시판 -->
 			
 			

@@ -61,7 +61,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 		</div>
 	</nav>
 
-<div class="container">
+<div class="jumbotron">
 <h1 class="text-center text-info">상세 보기 페이지</h1>
 <div class="container">
 	<ul class="list-inline">

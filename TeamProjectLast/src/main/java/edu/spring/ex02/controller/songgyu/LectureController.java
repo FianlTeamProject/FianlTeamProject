@@ -26,18 +26,18 @@ public class LectureController {
 	@RequestMapping(value="/lecturelist")
 	public String lecturelist(Model model) {
 		ArrayList<lecturelista> list = new ArrayList<>();
-		list.add(new lecturelista(1,"?˜¤ë¦¬ì—”?…Œ?´?…˜","ê°œë˜¥?´","MD3YGrofnDY"));
-		list.add(new lecturelista(2,"JAVA?”„ë¡œê·¸?˜ë°ì´?? 1","ê°œë˜¥?´","yaqnVTBz1As"));
-		list.add(new lecturelista(3,"JAVA?”„ë¡œê·¸?˜ë°ì´?? 2,ë³??ˆ˜","ê°œë˜¥?´","nnGePPehqpY"));
-		list.add(new lecturelista(4,"JAVA?”„ë¡œê·¸?˜ë°? 3ê°?","ê°œë˜¥?´","fFRpV2Z0xow"));
-		list.add(new lecturelista(5,"JAVA?”„ë¡œê·¸?˜ë°? 4ê°?","ê°œë˜¥?´","da-GCx8VASU"));
-		list.add(new lecturelista(6,"JAVA?”„ë¡œê·¸?˜ë°? 5ê°?","ê°œë˜¥?´","TRNws4-IUXQ"));
-		list.add(new lecturelista(7,"JAVA?”„ë¡œê·¸?˜ë°? 6ê°?","ê°œë˜¥?´","2e9ejfeberQ"));
-		list.add(new lecturelista(8,"JAVA?”„ë¡œê·¸?˜ë°? 7ê°?","ê°œë˜¥?´","YH8_RGoyu2w"));
-		list.add(new lecturelista(9,"JAVA?”„ë¡œê·¸?˜ë°? 8ê°?","ê°œë˜¥?´","yKuc1c6jZEc"));
-		list.add(new lecturelista(10,"JAVA?”„ë¡œê·¸?˜ë°? 9ê°?","ê°œë˜¥?´","dESusx125wM"));
-		list.add(new lecturelista(11,"JAVA?”„ë¡œê·¸?˜ë°? 10ê°?","ê°œë˜¥?´","FnNuazXhdAU"));
-		list.add(new lecturelista(12,"JAVA?”„ë¡œê·¸?˜ë°? 11ê°?","ê°œë˜¥?´","P3OX4s48UqA"));
+		list.add(new lecturelista(1,"ì˜¤ë¦¬ì—”í…Œì´ì…˜","ê°œë˜¥ì´","MD3YGrofnDY"));
+		list.add(new lecturelista(2,"JAVAí”„ë¡œê·¸ë˜ë°ì´ë€ 1","ê°œë˜¥ì´","yaqnVTBz1As"));
+		list.add(new lecturelista(3,"JAVAí”„ë¡œê·¸ë˜ë°ì´ë€ 2,ë³€ìˆ˜","ê°œë˜¥ì´","nnGePPehqpY"));
+		list.add(new lecturelista(4,"JAVAí”„ë¡œê·¸ë˜ë° 3ê°•","ê°œë˜¥ì´","fFRpV2Z0xow"));
+		list.add(new lecturelista(5,"JAVAí”„ë¡œê·¸ë˜ë° 4ê°•","ê°œë˜¥ì´","da-GCx8VASU"));
+		list.add(new lecturelista(6,"JAVAí”„ë¡œê·¸ë˜ë° 5ê°•","ê°œë˜¥ì´","TRNws4-IUXQ"));
+		list.add(new lecturelista(7,"JAVAí”„ë¡œê·¸ë˜ë° 6ê°•","ê°œë˜¥ì´","2e9ejfeberQ"));
+		list.add(new lecturelista(8,"JAVAí”„ë¡œê·¸ë˜ë° 7ê°•","ê°œë˜¥ì´","YH8_RGoyu2w"));
+		list.add(new lecturelista(9,"JAVAí”„ë¡œê·¸ë˜ë° 8ê°•","ê°œë˜¥ì´","yKuc1c6jZEc"));
+		list.add(new lecturelista(10,"JAVAí”„ë¡œê·¸ë˜ë° 9ê°•","ê°œë˜¥ì´","dESusx125wM"));
+		list.add(new lecturelista(11,"JAVAí”„ë¡œê·¸ë˜ë° 10ê°•","ê°œë˜¥ì´","FnNuazXhdAU"));
+		list.add(new lecturelista(12,"JAVAí”„ë¡œê·¸ë˜ë° 11ê°•","ê°œë˜¥ì´","P3OX4s48UqA"));
 		logger.info(list.get(3).getAddress() + "<<<<<<<<<");
 		
 		model.addAttribute("list", list);
