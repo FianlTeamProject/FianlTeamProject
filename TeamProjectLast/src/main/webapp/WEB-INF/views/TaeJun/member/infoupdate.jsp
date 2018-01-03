@@ -70,13 +70,23 @@
 	</nav>
 	
 	<div class="well well-lg" style="margin-top: 60px;" align="center">
-		ID : 무엇
 		<br>
-		PWD : 수정?
-		<br>
-		EMAIL : 수정!
-		<br>
-		<button>확인?</button>
+<form action="/ex02/TaeJun/member/infoupdate" method="post">
+	
+	<div class="input-group form-group" id="pwddiv">
+		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+		<input id="pwd" type="password" class="form-control" name="pwd" required placeholder="Password">
+	</div>
+	
+	<div class="input-group form-group">
+		<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+		<input id="Email" type="email" class="form-control" name="Email" required placeholder="Email">
+	</div>
+	<br>
+	<div class="input-group" align="right">
+		<input class="btn btn-default" id="submit" type="submit" value="수정" />
+	</div>
+</form>
 	</div>
 	
 </div>

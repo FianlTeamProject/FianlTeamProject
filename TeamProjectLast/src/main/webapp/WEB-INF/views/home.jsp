@@ -64,7 +64,7 @@
 					Member loginResult = (Member) session.getAttribute("loginResult");
 					if(loginResult!=null) {
 						userId=loginResult.getMid();
-						out.print("<li><a href=\"\"><span class=\"glyphicon glyphicon-user\"></span>"+loginResult.getMid()+"</li>");
+						out.print("<li><a href=\"/ex02/TaeJun/member/info\"><span class=\"glyphicon glyphicon-user\"></span>"+loginResult.getMid()+"</li>");
 						out.print("<li><a href=\"/ex02/logout\"></span> 로그아웃</a></li>");
 					}else {
 						userId="손님";
@@ -96,7 +96,7 @@
 					
 					if(loginResult!=null) {
 						userId=loginResult.getMid();
-						out.print("<li><a href=\"\"><span class=\"glyphicon glyphicon-user\"></span>"+loginResult.getMid()+"</li>");
+						out.print("<li><a href=\"/ex02/TaeJun/member/info\"><span class=\"glyphicon glyphicon-user\"></span>"+loginResult.getMid()+"</li>");
 						out.print("<li><a href=\"/ex02/logout\"></span> 로그아웃</a></li>");
 					}else {
 						out.print("	<form method=\"post\">\r\n" + 
@@ -155,9 +155,9 @@ $(document).ready(function() {
 });
 </script>
 			
-			<div style="margin-top: 15%;" class="col-sm-9">
+			<!--<div style="margin-top: 15%;" class="col-sm-9">
 				채팅이 들어갈 공간
-			</div>
+			</div>-->
 		</div> <!-- 로그인 페이지 끝 -->
 		
 		

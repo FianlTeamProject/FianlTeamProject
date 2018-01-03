@@ -92,8 +92,9 @@ public class MemberController {
 	}//end memberLogout
 	
 	@RequestMapping(value="/info", method=RequestMethod.GET)
-	private void memberInfo(HttpSession session) {
+	private void memberInfo(HttpSession session, Model model) {
 		Member m = (Member) session.getAttribute("loginResult");
+		model.addAttribute("member",m);
 	}//end memberInfo
 	
 	@RequestMapping(value="/info", method=RequestMethod.POST)
@@ -102,6 +103,7 @@ public class MemberController {
 		Member m = (Member) session.getAttribute("loginResult");
 		Member checkPwdMember = service.check(m.getMid());
 		if(pwd.equals(checkPwdMember.getPasswd())) {//비밀번호가 같음
+			model.addAttribute("member",m);
 			html="TaeJun/member/infoupdate";
 		}else {//다름
 			model.addAttribute("fail","fail2");
@@ -109,6 +111,17 @@ public class MemberController {
 		}
 		return html;
 	}//end memberInfo
+	
+	@RequestMapping(value="/infoupdate", method=RequestMethod.POST)
+	private String memberinfoupdate2 (HttpSession session, String pwd, String Email, Model model) {
+		String html = "";
+		Member m = (Member) session.getAttribute("loginResult");
+		m.setPwd(pwd);
+		m.setEmail(Email);
+		service.update(m);
+		html="redirect:/";
+		return html;
+	}
 	
 	
 	
