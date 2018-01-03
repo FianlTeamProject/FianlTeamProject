@@ -77,7 +77,7 @@ public class MemberController {
 		String html = "";
 		if (result!=null) { //로그인 성공
 			session.setAttribute("loginResult", result);
-			html = "redirect:/TaeJun/board/list";
+			html = "redirect:/";
 		}else { //로그인 실패
 			model.addAttribute("fail","fail2");
 			html = "TaeJun/member/login";

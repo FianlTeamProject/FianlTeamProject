@@ -3,6 +3,8 @@ package edu.spring.ex02.controller.hyunho;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.spring.ex02.domain.hyunho.Board2;
+import edu.spring.ex02.domain.taejun.Member;
 import edu.spring.ex02.pageutil.hyunho.PageNumberMaker2;
 import edu.spring.ex02.pageutil.hyunho.PaginationCriteria2;
 import edu.spring.ex02.service.hyunho.BoardService2;
@@ -27,9 +30,11 @@ public class BoardController2 {
 	private BoardService2 boardService;
 	
 	@RequestMapping(value="/list" , method=RequestMethod.GET)
-	public void boardList(Integer page , Integer perPage, Model model) {
+	public void boardList(Integer page , Integer perPage, Model model, HttpSession session) {
 		logger.info("page: {}, perPage: {} " , page, perPage);
 		PaginationCriteria2 c = null;
+		Member m = (Member) session.getAttribute("loginResult");
+//		logger.info("IDIDIDID@*(ERY(*WHDUIWHFDUIWQFH(*W*(FO"+m.getMid());
 		
 		if(page != null && perPage != null) {
 			c = new PaginationCriteria2(page, perPage);
@@ -58,7 +63,22 @@ public class BoardController2 {
 	
 	
 	@RequestMapping(value="/register" , method=RequestMethod.GET)
-	public void registerBoard() {
+	public String registerBoard(Model model, HttpSession session) {
+		
+		String html = "";
+		Member m;
+		try {
+			m = (Member) session.getAttribute("loginResult");			
+			if (m!=null) {
+				model.addAttribute("member",m);
+				html = "hyunho/board/register";
+			} else {
+				html="redirect:/TaeJun/member/login"+"?fail=fail";
+			}
+		} catch (NullPointerException e) {
+			html="redirect:/TaeJun/member/login"+"?fail=fail";
+		}
+		return html;
 	}
 	
 	@RequestMapping(value="/register" , method=RequestMethod.POST)

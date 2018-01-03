@@ -336,7 +336,7 @@ public class BoardController {
 	
 	@RequestMapping(value="/chatting", method=RequestMethod.GET)
 	private String chattingCome() {
-		return "/TaeJun/chatting/Test";
+		return "TaeJun/chatting/Test";
 	}
 	
 }//end BoardController

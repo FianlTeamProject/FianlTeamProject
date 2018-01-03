@@ -46,7 +46,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 	<label for="content">글 내용</label><br/>
 	<textarea class="form-control" rows="20" cols="40" name="content" id="content" placeholder="글 내용을 입력하세요..." required></textarea><br/><br/>
 	<label for="userid">아이디</label><br/>
-	<input class="form-control" type="text" name="userid" id="userid"  required/><br/><br/>
+	<input class="form-control" type="text" name="userid" id="userid" value="${member.mid }" readonly required/><br/><br/>
 	<input class="btn btn-success" type="submit" value="작성 완료" />
 </form>
 </div>
