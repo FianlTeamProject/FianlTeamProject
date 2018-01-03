@@ -281,7 +281,7 @@ $(document).ready(function() {
 					</table>
 				</div>
 				
-			</div>
+			
 			</div> <!-- 2번 게시판 -->
 			
 			
@@ -294,7 +294,7 @@ $(document).ready(function() {
 		</div> <!-- 미리보기용인거시야 -->
 	</div>
 	<footer class="container-fluid text-center">
-  		<p>Footer Text</p>
+  		<p align="right">무기력....</p>
 	</footer>
 </div>
 </body>

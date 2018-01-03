@@ -34,7 +34,23 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 			<div class="navbar-header">
 			
 			<a class="navbar-brand" href="/ex02">홈페이지</a></div>
-			
+			<ul class="nav navbar-nav navbar-right">
+				<%
+				try{
+					Member loginResult = (Member) session.getAttribute("loginResult");
+					if(loginResult!=null) {
+						out.print("<li><a href=\"/ex02/TaeJun/member/info\"><span class=\"glyphicon glyphicon-user\"></span>"+loginResult.getMid()+"</li>");
+						out.print("<li><a href=\"/ex02/logout\"></span> 로그아웃</a></li>");
+					}else {
+						out.print("<li><a href=\"/ex02/TaeJun/member/register\"><span class=\"glyphicon glyphicon-user\"></span> 회원가입</a></li>");
+						out.print("<li><a href=\"/ex02/TaeJun/member/login\"><span class=\"glyphicon glyphicon-log-in\"></span> 로그인</a></li>");
+					}
+				} catch (NullPointerException e) {
+					out.print("<li><a href=\"/ex02/TaeJun/member/register\"><span class=\"glyphicon glyphicon-user\"></span> 회원가입</a></li>");
+					out.print("<li><a href=\"/ex02/TaeJun/member/login\"><span class=\"glyphicon glyphicon-log-in\"></span> 로그인</a></li>");
+				}
+				%>	
+			</ul>
 		
 			
 		</div>

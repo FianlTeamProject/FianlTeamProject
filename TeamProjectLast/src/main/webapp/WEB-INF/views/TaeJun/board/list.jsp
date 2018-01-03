@@ -92,7 +92,7 @@ body {
 			<a class="navbar-brand" href="/ex02">홈페이지</a></div>
 			<ul class="nav navbar-nav">
 				<li><a href="/ex02/TaeJun/board/write">새 글 작성</a></li>
-				<li><a href="/ex02/TaeJun/board/chatting/" onclick="window.open(this.href, '_blank'); return false;">채팅창</a></li>
+				<!-- <li><a href="/ex02/TaeJun/board/chatting/" onclick="window.open(this.href, '_blank'); return false;">채팅창</a></li> -->
 			</ul>
 			
 			<ul class="nav navbar-nav navbar-right">
