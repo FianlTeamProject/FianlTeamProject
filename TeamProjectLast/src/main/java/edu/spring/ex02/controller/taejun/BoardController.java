@@ -334,4 +334,9 @@ public class BoardController {
 		return html;
 	}
 	
+	@RequestMapping(value="/chatting", method=RequestMethod.GET)
+	private String chattingCome() {
+		return "/TaeJun/chatting/Test";
+	}
+	
 }//end BoardController
