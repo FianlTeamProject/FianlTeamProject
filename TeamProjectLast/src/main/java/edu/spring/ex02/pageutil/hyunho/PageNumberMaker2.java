@@ -62,33 +62,30 @@ public class PageNumberMaker2 {
 	
 	public void setPageMakerData() {
 		// 전체 페이지 갯수
-		int totalPageNum = (int)Math.ceil((double)totalCount / criteria.getNumsPerPage());
-		// 보여줘야할 링크 묶음의 개수
-		int temp = (int)(Math.ceil((double)criteria.getPage() / numsOfLinks)) * numsOfLinks ;
+		int totalPageNum =  (int) Math.ceil((double) totalCount / criteria.getNumsPerPage());
 		
-		if(temp > totalPageNum) {
+		int temp = (int) Math.ceil((double) criteria.getPage() / numsOfLinks) * numsOfLinks;
+		
+		if (temp > totalPageNum) {
 			endPage = totalPageNum;
-		}else {
-			endPage = temp; 
+		} else {
+			endPage = temp;
 		}
 		
-		startPage = ((endPage - 1) / numsOfLinks) * numsOfLinks + 1;
+		startPage = ((endPage-1)/numsOfLinks)*numsOfLinks+1;
 		
-		if(startPage == 1) {
-			prev = false;
-		}else {
-			prev = true;
+		if (startPage==1) {
+			prev=false;
+		} else {
+			prev=true;
 		}
 		
-		if(endPage * criteria.getNumsPerPage() >= totalCount) {
-			next = false;
-		}else {
-			next = true;
+		if (endPage*criteria.getNumsPerPage()>=totalCount) {
+			next=false;
+		} else {
+			next=true;
 		}
-		
-	}
-	
-	
+	}	
 	
 }// end class PageNumberMaker
 

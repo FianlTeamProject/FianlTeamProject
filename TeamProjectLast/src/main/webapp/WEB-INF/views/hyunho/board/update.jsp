@@ -1,7 +1,9 @@
+<%@page import="edu.spring.ex02.domain.taejun.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html>
 <html>
 <head>
 <meta charset=UTF-8>
@@ -25,6 +27,18 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
+<div class="container" style="font-family:배달의민족 주아;">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+			
+			<a class="navbar-brand" href="/ex02">홈페이지</a></div>
+			
+		
+			
+		</div>
+	</nav>
+
 <div class="container">
 <h1 class="text-center text-info">게시글 수정 페이지</h1>
 <div class="container">

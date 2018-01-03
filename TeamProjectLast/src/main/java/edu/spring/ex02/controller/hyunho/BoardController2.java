@@ -38,7 +38,7 @@ public class BoardController2 {
 		}
 		
 		List<Board2> list = boardService.select(c);
-		model.addAttribute("boardList", list);
+		model.addAttribute("boardList2", list);
 		
 		PageNumberMaker2 maker = new PageNumberMaker2();
 		maker.setCriteria(c);
@@ -46,6 +46,13 @@ public class BoardController2 {
 		maker.setTotalCount(count);
 		maker.setPageMakerData();
 		
+		//////////////////////////
+		logger.info("total count: " + maker.getTotalCount());
+		logger.info("start page: " + maker.getStartPage());
+		logger.info("end page: " + maker.getEndPage());
+		//////////////////////////
+		
+		model.addAttribute("page",page);
 		model.addAttribute("pageMaker", maker);
 	}
 	
@@ -96,7 +103,7 @@ public class BoardController2 {
 		}
 		
 		List<Board2> list = boardService.search(c, searchType, searchKeyword);
-		model.addAttribute("boardList", list);
+		model.addAttribute("boardList2", list);
 		 
 		PageNumberMaker2 maker = new PageNumberMaker2();
 		maker.setCriteria(c);

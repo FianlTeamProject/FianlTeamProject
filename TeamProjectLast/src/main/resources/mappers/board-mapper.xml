@@ -85,7 +85,7 @@
     <!-- 페이지 처리를 위한 SQL 문장들 -->
     <!-- Board 테이블의 전체 데이터 개수 -->
     <select id="totalCount" resultType="Integer">
-    select count(bno) cnt from test_board
+    select count(bno) cnt from ${tblBoard}
     </select>
     
     <!-- 한 페이지에 보여줄 게시글만 검색 -->

@@ -1,7 +1,9 @@
+<%@page import="edu.spring.ex02.domain.taejun.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html>
 <html>
 <head>
 <meta charset=UTF-8>
@@ -25,6 +27,18 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
+<div class="container" style="font-family:배달의민족 주아;">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+			
+			<a class="navbar-brand" href="/ex02">홈페이지</a></div>
+			
+		
+			
+		</div>
+	</nav>
+
 <div class="container">
 <h1 class="text-center text-info">상세 보기 페이지</h1>
 <div class="container">
@@ -53,8 +67,8 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 
 <form class="form-group">
 <textarea class="form-control" id="rtext" rows="5" cols="50" name="rtext"></textarea><br/><br/>
-<input class="form-control" id="replier" name="replier" value="${board.userid}">
-<input class="form-control" type="hidden" id="bno" name="bno" value="${board.bno}" readonly/>
+<input class="form-control" id="replier" name="replier" >
+<input class="form-control" type="hidden" id="bno"  name="bno" value="${board.bno}" readonly/>
 <button class="btn btn-info" id="btn-insert">확인</button>
 </form>
 <div id="replies">
@@ -69,11 +83,10 @@ $(function(){
 			
 			var replyList = '';
 			$(data).each(function(){
-				replyList += '<div class="form-group" id="reply-item" data-rno=' + this.rno + '>'
-						  + '<input type="hidden" class="form-control" id="rno" value="' + this.rno + '" readonly />'
-						  + '<input type="text" class="form-control" id="rtext" value="' + this.rtext + '" />'
-						  + '<input type = "text" value = " 작성자 "/>'
-						  + '<input type="text" id="replier" value="'  + this.replier + '" readonly />'
+				replyList += '<div class="reply-item" data-rno=' + this.rno + '>'
+						  + '<input type="hidden" id="rno" value="' + this.rno + '" readonly />'
+						  + '<input type="text" style="background-color: silver;" class="form-control" id="rtext" value="' + this.rtext + '" />'
+						  + '<input type="text" id="replier" value="' + this.replier + '" readonly />'
 						  + '<button class="btn-update" >수정</button>'
 						  + '<button class="btn-delete" >삭제</button>'
 						  + '</div>';
@@ -103,10 +116,9 @@ $(function(){
 			}),
 			success: function(result){
 				if(result === 1){
-					alert("댓글 입력 성공");
+					
 					getAllReplies();
 				}else{
-					alert("댓글 입력 실패");
 				}
 			}
 		});

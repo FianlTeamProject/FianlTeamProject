@@ -179,8 +179,16 @@ $(document).ready(function() {
 				$('#oneboard').html(res);
 			}
 		});
-	}
-	//getOneboard();
+	}//getOneboard();
+	
+	function getTwoBoard() {
+		$.ajax({
+			url: '/ex02/hyunho/board/list',
+			success: function(res, status, xhr) {
+				$('#twoboard').html(res);
+			}
+		});
+	}//end getTwoBoard
 	
 	var thisPage = ${page};
 	$('#'+thisPage).addClass("active");
@@ -225,29 +233,55 @@ $(document).ready(function() {
 								</c:forEach>
 							</tbody>
 					</table>
-						
-						<ul class="pagination">
-							<c:if test="${pageMaker.prev}">
-								<li><a href="?page=${(pageMaker.startPage)-1 }&perPage=10">prev</a></li>
-							</c:if>
-							
-							<c:forEach var="num" begin="${pageMaker.startPage }" end="${pageMaker.endPage }"> 
-								<li id="${num }"><a href="?page=${num }&perPage=10">${num }</a></li>
-							</c:forEach>
-							
-							<c:if test="${pageMaker.next}">
-								<li><a href="?page=${(pageMaker.endPage)+1 }&perPage=10">next</a></li>
-							</c:if>
-						</ul>
 				</div>
 				
 			</div> <!-- 1번 게시판 -->
 			
 			
 			
-			
+			<!-- 2번 게시판 시작 -->
 			<div class="col-sm-4">
-				게시판 2번이 들어갈 div
+			<div id="twoboard" class="well well-lg">
+				<div align="center">
+					<script>
+						$(document).ready(function(){
+						    $('[data-toggle="tooltip"]').tooltip(); 
+						});
+					</script>
+					<button style="margin:7px 15px 17px 0;"
+						type="button"
+						class="btn btn-success"
+						data-toggle="tooltip"
+						data-placement="bottom"
+						title=""
+						data-original-title="토론 게시판입니다.">
+						<font style="vertical-align: inherit;">
+							<font style="vertical-align: inherit;"><a href="/ex02/hyunho/board/list">2번 게시판.</a></font>
+						</font>
+					</button>
+				</div>
+					<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<td>번호</td>
+									<td>제목</td>
+									<td>작성자</td>
+								</tr>
+							</thead>
+							
+							<tbody>
+								<c:forEach var="board2" items="${boardList2}">
+								<tr>
+									<td>${board2.bno}</td>
+									<td><a href="/ex02/hyunho/board/detail?bno=${board2.bno}">${board2.title}</a></td>
+									<td>${board2.userid}</td>
+								</tr>
+								</c:forEach>
+							</tbody>
+					</table>
+				</div>
+				
+			</div>
 			</div> <!-- 2번 게시판 -->
 			
 			

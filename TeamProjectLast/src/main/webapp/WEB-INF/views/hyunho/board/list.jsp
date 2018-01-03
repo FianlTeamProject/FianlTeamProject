@@ -1,9 +1,9 @@
+<%@page import="edu.spring.ex02.domain.taejun.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html>
 <head>
 <meta charset=UTF-8>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,8 +28,20 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 
 </head>
 <body>
-<div class="container" style="font-family:배달의민족 주아;" >
-<H1 class="text-center text-info"> 회원 메인 페이지 </H1>
+<div class="container" style="font-family:배달의민족 주아;">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+			
+			<a class="navbar-brand" href="/ex02">홈페이지</a></div>
+			
+		
+			
+		</div>
+	</nav>
+
+<div class="jumbotron"  >
+<H1 class="text-center text-info"> 토론 게시판 </H1>
 
 <hr/>
 <div class="container">
@@ -58,20 +70,21 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="board" items="${boardList}">
+		<c:forEach var="board" items="${boardList2}">
             <tr>
-                <td>${board.bno}</td>
-                <td>
+                <td class="text-center">${board.bno}</td>
+                <td class="text-center">
                     <a href="detail?bno=${board.bno}">${board.title}</a>
                 </td>
-                <td>${board.userid}</td>
-                <td>
+                <td class="text-center">${board.userid}</td>
+                <td class="text-center">
                     <fmt:formatDate var="regdate" value="${board.regdate}" pattern="yyyy/MM/dd HH:mm:ss"/> ${regdate}
                 </td>
             </tr>
         </c:forEach>
 	</tbody>
 </table>
+<div class="text-center">
 <ul id="pagination" class="pagination">
 	<c:if test="${pageMaker.prev}">
 		<!-- 이전 버튼은 (startPage - 1) -->
@@ -88,7 +101,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 		<li><a class="page-link" href="${pageMaker.endPage+1}">다음▶</a></li>
 	</c:if>
 </ul>
-
+</div>
 <form id="pageForm" action="list" method="get" >
 	<input type="hidden" name="page" id="page" value="${pageMaker.criteria.page}" />
 	<input type="hidden" name="perPage" id="perPage" value="${pageMaker.criteria.numsPerPage}" />

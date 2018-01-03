@@ -1,6 +1,9 @@
+<%@page import="edu.spring.ex02.domain.taejun.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html>
 <html>
 <head>
 <meta charset=UTF-8>
@@ -23,6 +26,17 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
+<div class="container" style="font-family:배달의민족 주아;">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+			
+			<a class="navbar-brand" href="/ex02">홈페이지</a></div>
+			
+		
+			
+		</div>
+	</nav>
 
 <div class="container">
 <h1 class="text-center text-info" >새 글 작성 페이지</h1>
@@ -32,7 +46,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
 	<label for="content">글 내용</label><br/>
 	<textarea class="form-control" rows="20" cols="40" name="content" id="content" placeholder="글 내용을 입력하세요..." required></textarea><br/><br/>
 	<label for="userid">아이디</label><br/>
-	<input class="form-control" type="text" name="userid" id="userid" required /><br/><br/>
+	<input class="form-control" type="text" name="userid" id="userid"  required/><br/><br/>
 	<input class="btn btn-success" type="submit" value="작성 완료" />
 </form>
 </div>

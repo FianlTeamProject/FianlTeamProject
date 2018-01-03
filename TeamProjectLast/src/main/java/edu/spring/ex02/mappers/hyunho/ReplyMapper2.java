@@ -2,6 +2,7 @@ package edu.spring.ex02.mappers.hyunho;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -22,6 +23,12 @@ public interface ReplyMapper2 {
 	String SQL_SELECT_BY_BNO =
 			" SELECT * FROM test_reply WHERE BNO = #{bno} ORDER BY rno DESC";
 	
+	String SQL_DELETE = 
+			"DELETE FROM test_reply WHERE rno = #{rno}";
+
+	
+	
+	
 	@Select(SQL_SELECT_BY_BNO)
 	List<Reply2> read(int bno);
 	// 어노테이션과 인터페이스를 사용할 때
@@ -36,6 +43,7 @@ public interface ReplyMapper2 {
 	// Mapper 인터페이스 메소드의 이름을
 	// Mapper xml 파일의 SQL 문의 id와 동일하게만 만들어 주면 xml 파일에 정의된 SQL문을 사용하는 메소드가 됨
 	// edu.spring.ex03.Mappers.ReplyMapper.delete
+	@Delete(SQL_DELETE)
 	int delete(int rno);
 	
 }// end interface ReplyMapper
